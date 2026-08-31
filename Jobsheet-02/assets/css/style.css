@@ -2,3 +2,25 @@ header {
     background-color: #1d5b8a;
     color: #fff;
 }
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #2b2b2b;
+    background-color: #54f6f8;
+    line-height: 1.5;
+}
+
+a {
+    color: #1d5b8a;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
