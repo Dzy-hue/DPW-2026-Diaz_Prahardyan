@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 header {
     background-color: #2e7d32; 
     color: #fff;
@@ -30,7 +32,7 @@ header nav a {
 }
 
 body {
-    font-family: "Segoe UI", Arial, sans-serif;
+    font-family: "Inter", sans-serif;
     color: #2b2b2b;
     background-color: #f5f6f8;
     line-height: 1.5;
@@ -75,6 +77,12 @@ main section:nth-of-type(2) article {
     border-radius: 8px;
     padding: 1.25rem;
     text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+main section:nth-of-type(2) article:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
 }
 
 main section:nth-of-type(2) article h3 {
@@ -100,7 +108,7 @@ table {
 
 th, td {
     text-align: left;
-    padding: 0.65rem 0.75rem;
+    padding: 0.85rem 1rem;
     border-bottom: 1px solid #e2e6ea;
 }
 
@@ -121,9 +129,15 @@ td button {
     padding: 0.35rem 0.7rem;
     margin-right: 0.35rem;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
     font-size: 0.85rem;
+    font-weight: 500;
+    transition: opacity 0.2s ease;
+}
+
+td button:hover {
+    opacity: 0.85;
 }
 
 td button.button-edit {
@@ -142,24 +156,31 @@ td button.button-delete {
 }
 
 form p {
-    margin-bottom: 1rem;
+    margin-bottom: 0.6rem;
 }
 
 form label {
     display: block;
-    margin-bottom: 0.35rem;
+    margin-bottom: 0;
     font-weight: 600;
     color: #444;
 }
-
+    
 form input,
 form select {
     width: 100%;
     max-width: 400px;
     padding: 0.55rem 0.7rem;
     border: 1px solid #cdd4da;
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 1rem;
+}
+
+form input:focus,
+form select:focus {
+    outline: none;
+    border-color: #2e7d32;
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15);
 }
 
 form button[type="submit"] {
