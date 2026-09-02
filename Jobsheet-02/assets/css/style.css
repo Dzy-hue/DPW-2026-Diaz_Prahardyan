@@ -1,5 +1,5 @@
 header {
-    background-color: #1d5b8a;
+    background-color: #2e7d32; /* Green color for header background */
     color: #fff;
     padding: 1rem 1.5rem;
     display: flex;
@@ -37,7 +37,7 @@ body {
 }
 
 a {
-    color:#1d5b8a;
+    color:#2e7d32;
     text-decoration: none;
 }
 
@@ -61,7 +61,7 @@ section {
 
 section h2 {
     margin-bottom: 1rem;
-    color: #1d5b8a;
+    color: #2e7d32;
 }
 
 main section:nth-of-type(2) {
@@ -86,7 +86,7 @@ main section:nth-of-type(2) article h3 {
 main section:nth-of-type(2) article p {
     font-size: 1.8rem;
     font-weight: 700;
-    color: #1d5b8a;
+    color: #2e7d32;
 }
 
 main section:nth-of-type(2) h2 {
@@ -105,7 +105,7 @@ th, td {
 }
 
 thead {
-    background-color: #1d5b8a;
+    background-color: #2e7d32;
     color: #fff;
 }
 
@@ -158,7 +158,7 @@ form select {
 }
 
 form button[type="submit"] {
-    background-color: #1d5b8a;
+    background-color: #2e7d32;
     color: #fff;
     border: none;
     padding: 0.6rem 1.5rem;
@@ -168,7 +168,7 @@ form button[type="submit"] {
 }
 
 form button[type="submit"]:hover {
-    background-color: #164869;
+    background-color: #1b5e20;
 }
 
 footer {
