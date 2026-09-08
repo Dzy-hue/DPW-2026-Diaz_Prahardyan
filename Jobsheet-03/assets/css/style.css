@@ -203,3 +203,8 @@ footer {
     color: #7a8794;
     font-size: 0.9rem;
 }
+
+@media (max-width: 768px) {
+    /* aturan CSS di sini Hanya belaku
+    untuk layar dengan lebar maksimum 768px */
+}
