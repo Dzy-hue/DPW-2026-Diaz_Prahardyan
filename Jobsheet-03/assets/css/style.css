@@ -1,29 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-header {
-    background-color: #9a3ef0; 
-    color: #fff;
-    padding: 1rem 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-header h1 {
-    font-size: 1.4rem;
-}
-
-header nav ul {
-    list-style: none;
-    display: flex;
-    gap: 1.25rem;
-}
-
-header nav a {
-    color: #fff;
-    font-weight: 500;
-}
+/* =========================================================
+   1. BASE STYLES (MOBILE FIRST)
+   Semua kode di sini secara default dirancang untuk layar HP 
+   ========================================================= */
 
 * {
     box-sizing: border-box;
@@ -39,7 +19,7 @@ body {
 }
 
 a {
-    color: #9a3ef0;
+    color: #003512;
     text-decoration: none;
 }
 
@@ -47,6 +27,59 @@ a:hover {
     text-decoration: underline;
 }
 
+/* ==== Header & Navigasi (Versi Mobile) ==== */
+header {
+    background-color: #003512; 
+    color: #fff;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: relative; /* Disiapkan untuk hamburger menu */
+}
+
+header h1 {
+    font-size: 1.4rem;
+}
+
+.nav-toggle {
+    display: none;
+}
+
+/* Hamburger menu tampil secara default di HP */
+.nav-toggle-label {
+    display: block; 
+    font-size: 1.6rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Navigasi disembunyikan dan berjejer ke bawah di HP */
+header nav {
+    display: none;
+    width: 100%;
+    order: 3;
+    margin-top: 1rem;
+}
+
+.nav-toggle:checked ~ nav {
+    display: block;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column; /* Menu memanjang ke bawah */
+    gap: 0.75rem;
+}
+
+header nav a {
+    color: #fff;
+    font-weight: 500;
+}
+
+/* ==== Layout & Komponen Dasar (Versi Mobile) ==== */
 main {
     max-width: 1000px;
     margin: 2rem auto;
@@ -63,13 +96,18 @@ section {
 
 section h2 {
     margin-bottom: 1rem;
-    color: #9a3ef0;
+    color: #003512;
 }
 
+/* Grid Kartu Statistik default-nya 1 kolom di HP */
 main section:nth-of-type(2) {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 1fr; 
     gap: 1rem;
+}
+
+main section:nth-of-type(2) h2 {
+    grid-column: 1 / -1;
 }
 
 main section:nth-of-type(2) article {
@@ -94,13 +132,10 @@ main section:nth-of-type(2) article h3 {
 main section:nth-of-type(2) article p {
     font-size: 1.8rem;
     font-weight: 700;
-    color: #9a3ef0;
+    color: #003512;
 }
 
-main section:nth-of-type(2) h2 {
-    grid-column: 1 / -1;
-}
-
+/* Tabel Dasar */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -113,7 +148,7 @@ th, td {
 }
 
 thead {
-    background-color: #9a3ef0;
+    background-color: #003512;
     color: #fff;
 }
 
@@ -125,6 +160,7 @@ tbody tr:hover {
     background-color: #eef4fa;
 }
 
+/* Tombol Tabel */
 td button {
     padding: 0.35rem 0.7rem;
     margin-right: 0.35rem;
@@ -136,40 +172,19 @@ td button {
     transition: opacity 0.2s ease;
 }
 
-td button:hover {
-    opacity: 0.85;
-}
+td button:hover { opacity: 0.85; }
+td button.button-edit { background-color: #f0ad4e; color: #fff; }
+td button.btn-detail { background-color: #5bc0de; color: #fff; }
+td button.button-delete { background-color: #d9534f; color: #fff; }
 
-td button.button-edit {
-    background-color: #f0ad4e;
-    color: #fff;
-}
-
-td button.btn-detail {
-    background-color: #5bc0de;
-    color: #fff;
-}
-
-td button.button-delete {
-    background-color: #d9534f;
-    color: #fff;
-}
-
-form p {
-    margin-bottom: 0.6rem;
-}
-
-form label {
-    display: block;
-    margin-bottom: 0;
-    font-weight: 600;
-    color: #444;
-}
+/* Form (Lebar maksimal default di HP) */
+form p { margin-bottom: 0.6rem; }
+form label { display: block; margin-bottom: 0; font-weight: 600; color: #444; }
     
 form input,
 form select {
     width: 100%;
-    max-width: 400px;
+    max-width: 100%; /* Memenuhi layar HP secara default */
     padding: 0.55rem 0.7rem;
     border: 1px solid #cdd4da;
     border-radius: 6px;
@@ -179,12 +194,12 @@ form select {
 form input:focus,
 form select:focus {
     outline: none;
-    border-color: #9a3ef0;
+    border-color: #003512;
     box-shadow: 0 0 0 3px rgba(154, 62, 240, 0.15);
 }
 
 form button[type="submit"] {
-    background-color: #9a3ef0;
+    background-color: #003512;
     color: #fff;
     border: none;
     padding: 0.6rem 1.5rem;
@@ -193,9 +208,7 @@ form button[type="submit"] {
     cursor: pointer;
 }
 
-form button[type="submit"]:hover {
-    background-color: #7a34c8;
-}
+form button[type="submit"]:hover { background-color: #003512; }
 
 footer {
     text-align: center;
@@ -204,80 +217,61 @@ footer {
     font-size: 0.9rem;
 }
 
-/* ==== Hamburger Menu ==== */
-.nav-toggle {
-    display: none;
+/* Utilitas Responsif */
+.table-responsive, .pr-responsive {
+    width: 100%;
+    overflow-x: auto;
 }
+.pr-responsive pre { font-family: inherit; }
 
-.nav-toggle-label {
-    display: none;
-    font-size: 1.6rem;
-    color: #fff;
-    cursor: pointer;
-}
 
-/* ==== Responsive Breakpoint ==== */
+/* =========================================================
+   2. MEDIA QUERIES (PROGRESSIVE ENHANCEMENT)
+   Mulai menambah kompleksitas saat layar membesar
+   ========================================================= */
 
-/* For large screens */
-@media (min-width: 1400px) {
-    main {
-        max-width: 1200px; 
+/* Breakpoint 1: Tablet (Lebar 481px ke atas) */
+@media (min-width: 481px) {
+    /* Kembalikan form input ke batas wajar */
+    form input,
+    form select {
+        max-width: 400px;
     }
-}
 
-/* For tablets and smaller devices */
-@media (max-width: 900px) {
+    /* Ubah Grid menjadi 2 kolom */
     main section:nth-of-type(2) {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* For mobile devices */
-@media (max-width: 480px) {
-    header {
-        position: relative;
-    }
-
+/* Breakpoint 2: Desktop (Lebar 901px ke atas) */
+@media (min-width: 901px) {
+    /* Matikan Hamburger Menu, tampilkan Navigasi berjejer ke samping */
     .nav-toggle-label {
-        display: block;
-    }
-
-    header nav {
         display: none;
-        width: 100%;
-        order: 3;
-        margin-top: 1rem;
     }
-
-    .nav-toggle:checked ~ nav {
-        display: block;
+    
+    header nav {
+        display: block; /* Selalu tampil di Desktop */
+        width: auto;
+        order: initial;
+        margin-top: 0;
     }
 
     header nav ul {
-        flex-direction: column;
-        gap: 0.75rem;
+        flex-direction: row; /* Menu berjajar ke kanan */
+        gap: 1.25rem;
     }
 
+    /* Ubah Grid menjadi 4 kolom penuh */
     main section:nth-of-type(2) {
-        grid-template-columns: 1fr;
-    }
-
-    form input,
-    form select {
-        max-width: 100%;
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 
-/* ==== Responsive Table ==== */
-.table-responsive {
-    overflow-x: auto;
-}
-
-.pr-responsive {
-    width: 100%;
-    overflow-x: auto;
-}
-
-.pr-responsive pre {
-    font-family: inherit;
+/* Breakpoint 3: Monitor Sangat Lebar (Lebar 1400px ke atas) */
+@media (min-width: 1400px) {
+    main {
+        max-width: 1200px; 
+    }
 }
