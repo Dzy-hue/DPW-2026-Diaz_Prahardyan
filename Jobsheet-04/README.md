@@ -32,14 +32,20 @@ Repositori ini menggabungkan penerapan dari 4 materi utama:
 
 ## 📁 Struktur Folder Terbaru
 
+```text
 jobsheet-04/
-├── index.html               # Sama persis dengan jobsheet-03
-├── assets/css/style.css     # Sama persis dengan jobsheet-03
-├── buku/                    # Sama persis dengan jobsheet-03
-├── anggota/                 # Sama persis dengan jobsheet-03
-├── docs/
-│   └── wireframe.md         # BARU — rancangan fitur yang belum dikoding
-└── README.md                # Folder dokumentasi ini
+├── index.html          # sama persis dengan joobsheet-03
+├── assets/             
+│   └── css/
+│       └── style.css   # Sama persis dengan jobsheet-03
+├── buku/
+│   ├── list.html       # Sama persis dengan jobsheet-03
+│   └── tambah.html     # Sama persis dengan jobsheet-03
+├── anggota/
+│   ├── list.html       # Sama persis dengan jobsheet-03
+│   └── tambah.html     # Sama persis dengan jobsheet-03
+└── README.md           # Dokumentasi jobsheet ini
+```
 
 ## 📌 Catatan Tambahan
 
