@@ -44,6 +44,8 @@ jobsheet-04/
 ├── anggota/
 │   ├── list.html       # Sama persis dengan jobsheet-03
 │   └── tambah.html     # Sama persis dengan jobsheet-03
+├── docs/
+│   └── wireframe.md    # Rancangan Desain Antarmuka (UI/UX)
 └── README.md           # Dokumentasi jobsheet ini
 ```
 
