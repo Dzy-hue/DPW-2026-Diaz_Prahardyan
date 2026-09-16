@@ -1,58 +1,60 @@
-# 📖 Jobsheet 4 — UI/UX Design (SIMPUS-Mini)
+# 📖 Jobsheet 5 — JavaScript DOM & Event (SIMPUS-Mini)
 
 ## 🎯 Informasi Jobsheet
 
-Sub-CPMK: Merancang UI/UX aplikasi (proyek).
+Sub-CPMK: Menerapkan manipulasi DOM & event JavaScript.
 
 ## 📚 SIMPUS-Mini (Sistem Perpustakaan Mini)
 
-Proyek ini adalah aplikasi antarmuka berbasis web statis untuk mengelola data perpustakaan mini. Proyek ini dikembangkan secara bertahap untuk mempelajari dan mengimplementasikan struktur dasar halaman web beserta desain antarmukanya.
+Proyek ini adalah aplikasi antarmuka berbasis web statis untuk mengelola data perpustakaan mini. Pada tahap ini, proyek mulai dilengkapi dengan **interaktivitas JavaScript** untuk mengubah halaman web statis menjadi aplikasi yang lebih responsif dan "hidup" saat berinteraksi dengan pengguna.
 
 ## 👨‍💻 Identitas Mahasiswa
 
 | Keterangan | Detail |
 | :--- | :--- |
 | **Nama** | Diaz Prahardyan |
-| **Kelas** | TI-2F |
+| **Kelas** | TI-1D |
 | **NIM** | [254107020119] |
 | **Program Studi** | D4-Teknik Informatika, Politeknik Negeri Malang |
 
-## 🚀 Perkembangan Proyek (Jobsheet 4)
+## 🚀 Perkembangan Proyek (Jobsheet 5)
 
-Repositori ini menggabungkan penerapan dari 4 materi utama:
+Repositori ini memperbarui proyek dengan 4 fitur utama berbasis JavaScript:
 
-1. **HTML5 Semantic Skeleton:** 
-   Penyusunan kerangka halaman secara terstruktur menggunakan tag semantik seperti `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, dan `<footer>`. Semua data yang ditampilkan pada tabel maupun form masih berupa data *dummy* statis.
-2. **CSS3 Styling Dasar:** 
-   Implementasi antarmuka visual yang dipusatkan pada file `style.css`. Tata letak memanfaatkan **Flexbox** untuk *navbar* yang responsif dan **CSS Grid** untuk menyusun susunan kartu statistik pada halaman beranda.
-3. **Responsive Design**
-   Repositori ini melanjutkan materi sebelumnya dengan fokus pada Responsive Web Design guna memastikan tampilan halaman web dapat menyesuaikan secara otomatis di berbagai ukuran perangkat tanpa memerlukan halaman terpisah. Pembaruan utama dari Jobsheet 2 meliputi penambahan tag meta viewport, penerapan menu hamburger murni CSS berbasis checkbox hack untuk layar kecil, penggunaan pembungkus tabel responsif agar dapat digeser secara horizontal, serta pengaturan media query pada file CSS untuk menyesuaikan jumlah kolom grid kartu statistik secara dinamis.
-4. **Perancangan UI/UX**
-   Repositori ini berfokus pada perancangan UI/UX Design sebelum membangun fitur kompleks, dengan catatan bahwa tidak ada perubahan kode HTML/CSS dari Jobsheet 3, melainkan penambahan dokumen docs/wireframe.md yang memuat rancangan wireframe teks serta user flow untuk fitur-fitur baru yang belum dikembangkan.
+1. **Menu Hamburger Dinamis (JS):** 
+   Menggantikan metode *checkbox hack* murni CSS dari jobsheet sebelumnya dengan tombol asli yang dikendalikan oleh JavaScript (`classList.toggle`), memberikan struktur kode yang lebih rapi dan semantik.
+2. **Filter Tabel Real-Time:** 
+   Pencarian data yang langsung menyaring baris pada tabel Daftar Buku dan Daftar Anggota di setiap ketikan keyboard (menggunakan event `keyup`), tanpa memerlukan *reload* halaman. Pencarian difokuskan secara spesifik pada kolom judul/nama.
+3. **Konfirmasi Hapus Data:** 
+   Tombol "Hapus" pada tabel kini dilengkapi dengan fitur peringatan menggunakan kotak dialog bawaan `confirm()`. Jika disetujui, baris data akan dihilangkan dari tampilan menggunakan manipulasi DOM (`remove()`).
+4. **Validasi Form Client-Side:** 
+   Formulir "Tambah Buku" dan "Tambah Anggota" kini mencegat pengiriman data kosong atau format yang salah (misalnya rentang tahun atau stok negatif). Pesan *error* disisipkan secara dinamis langsung di bawah kolom input menggunakan fungsi `insertAdjacentElement`, memberikan *feedback* visual yang instan tanpa perlu menyegarkan halaman.
 
 ## 📁 Struktur Folder Terbaru
 
 ```text
-jobsheet-04/
-├── index.html          # sama persis dengan joobsheet-03
+jobsheet-05/
+├── index.html          # Pembaruan pemanggilan file JS di footer
 ├── assets/             
-│   └── css/
-│       └── style.css   # Sama persis dengan jobsheet-03
+│   ├── css/
+│   │   └── style.css   # Penambahan class penunjang error & animasi JS
+│   └── js/
+│       └── app.js      # BARU — Pusat kendali logika DOM & Event
 ├── buku/
-│   ├── list.html       # Sama persis dengan jobsheet-03
-│   └── tambah.html     # Sama persis dengan jobsheet-03
+│   ├── list.html       # Penambahan search-box & class btn-hapus
+│   └── tambah.html     # Penambahan novalidate & ID form
 ├── anggota/
-│   ├── list.html       # Sama persis dengan jobsheet-03
-│   └── tambah.html     # Sama persis dengan jobsheet-03
+│   ├── list.html       # Penambahan search-box & class btn-hapus
+│   └── tambah.html     # Penambahan novalidate & ID form
 ├── docs/
-│   └── wireframe.md    # Rancangan Desain Antarmuka (UI/UX)
+│   └── wireframe.md    # Sama persis dengan jobsheet-04
 └── README.md           # Dokumentasi jobsheet ini
 ```
 
 ## 📌 Catatan Tambahan
+- Validasi pada jobsheet ini murni bersifat client-side (berjalan di browser) untuk melatih manipulasi DOM dan UX, sehingga masih bisa dilewati jika pengguna menonaktifkan JavaScript. Lapisan keamanan mutlak di sisi server (server-side) akan dibangun pada Jobsheet 7.
 
-- Dokumen docs/wireframe.md menjadi acuan struktur HTML baru yang mulai diimplementasikan pada Jobsheet 5 dan seterusnya (interaktivitas JS, lalu PHP/PostgreSQL untuk fitur Login & Peminjaman).
-- Perancangan UI/UX dilakukan terlebih dahulu sebelum menulis kode agar pengembang memiliki cetak biru alur pengguna yang jelas dan terstruktur.
+- Fungsi hapus baris masih bersifat front-end (hanya dihilangkan dari tampilan layar sementara). Penghapusan data secara permanen pada basis data akan diimplementasikan mulai Jobsheet 9.
 
 ---
 *Dokumentasi ini dirangkum dari instruksi Jobsheet Praktikum Desain & Pemrograman Web.*
