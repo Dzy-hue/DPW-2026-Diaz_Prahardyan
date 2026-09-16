@@ -169,7 +169,7 @@ async function muatTabelData(url, daftarKunci) {
 
     try {
         // simulasi delay jaringan agar loading indicator terlihat
-        await new Promise((resolve) => setTimeout(resolve, 600));
+        await new Promise((resolve) => setTimeout(resolve, 3000));
 
         const res = await fetch(url);
         if (!res.ok) {
