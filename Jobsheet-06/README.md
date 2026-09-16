@@ -71,11 +71,12 @@ Jalankan aplikasi melalui server lokal dengan salah satu opsi berikut:
 
 2. PHP Built-in Server: Buka terminal di dalam folder proyek ini, lalu jalankan:
 
-                           php -S localhost:8000
+                              php -S localhost:8000
 
 Buka peramban dan akses alamat http://localhost:8000/index.html.
 
 ✅ Hasil Pengujian Fitur
+
 [x] Pemuatan data otomatis saat halaman selesai dimuat (DOMContentLoaded).
 
 [x] Teks loading muncul selama proses pengambilan data berlangsung dan hilang setelah selesai.
