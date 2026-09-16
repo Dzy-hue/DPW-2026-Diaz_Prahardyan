@@ -70,7 +70,48 @@ function initValidasiForm() {
             hapusError(judul);
         }
 
-        // ...(pengecekan pengarang, tahun, stok dengan pola serupa)...
+        const pengarang = form.querySelector("[name='pengarang']");
+        if (pengarang && pengarang.value.trim() === "") {
+            tampilkanError(pengarang, "Field ini wajib diisi.");
+            valid = false;
+        } else if (pengarang) {
+            hapusError(pengarang);
+        }
+
+        const tahunTerbit = form.querySelector("[name='tahun']");
+        if (tahunTerbit && tahunTerbit.value.trim() === "") {
+            tampilkanError(tahunTerbit, "Field ini wajib diisi.");
+            valid = false;
+        } else if (tahunTerbit) {
+            hapusError(tahunTerbit);
+        }
+
+        const stok = form.querySelector("[name='stok']");
+        if (stok && stok.value.trim() === "") {
+            tampilkanError(stok, "Field ini wajib diisi.");
+            valid = false;
+        } else if (stok) {
+            hapusError(stok);
+        }
+
+        // 5. Cek ISBN (Hanya ada di form buku)
+        const isbn = form.querySelector("[name='isbn']");
+        
+        // Kita cek HANYA jika field-nya tidak kosong (karena ISBN mungkin opsional)
+        if (isbn && isbn.value.trim() !== "") {
+            const teksIsbn = isbn.value.trim();
+            
+            // Menggunakan Regex (Regular Expression) untuk mengecek pola
+            // ^[0-9-]+$ artinya: "Dari awal (^) sampai akhir ($), isinya HANYA BOLEH angka 0-9 atau tanda -"
+            const polaBenar = /^[0-9-]+$/.test(teksIsbn);
+            
+            if (!polaBenar) {
+                tampilkanError(isbn, "ISBN hanya boleh berisi angka dan tanda hubung (-).");
+                valid = false;
+            } else {
+                hapusError(isbn);
+            }
+        }
 
         if (!valid) {
             e.preventDefault();
