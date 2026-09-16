@@ -63,6 +63,7 @@ jobsheet-06/
 ```
 
 ⚙️ Cara Menjalankan
+
 PENTING (Batasan Keamanan CORS): Berkas tidak dapat dijalankan dengan klik ganda langsung dari File Explorer (file:///). Kebijakan keamanan peramban memblokir permintaan fetch() ke berkas lokal.
 
 Jalankan aplikasi melalui server lokal dengan salah satu opsi berikut:
