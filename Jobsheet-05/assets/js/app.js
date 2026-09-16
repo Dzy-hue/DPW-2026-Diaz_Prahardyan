@@ -76,6 +76,7 @@ function hapusError(input) {
     }
 }
 
+// ===== Fungsi Utama: Validasi Form (Versi Refactor) =====
 function initValidasiForm() {
     const form = document.getElementById("form-tambah");
     if (!form) return;
@@ -83,57 +84,52 @@ function initValidasiForm() {
     form.addEventListener("submit", function (e) {
         let valid = true;
 
-        const judul = form.querySelector("[name='judul'], [name='nama']");
-        if (judul && judul.value.trim() === "") {
-            tampilkanError(judul, "Field ini wajib diisi.");
-            valid = false;
-        } else if (judul) {
-            hapusError(judul);
-        }
+        // 1. Kumpulkan semua aturan dalam satu Array (Daftar)
+        const daftarAturan = [
+            { nama: "[name='judul'], [name='nama']", jenis: "wajib", pesan: "Field ini wajib diisi." },
+            { nama: "[name='pengarang']", jenis: "wajib", pesan: "Nama pengarang wajib diisi." },
+            { nama: "[name='tahun']", jenis: "tahun", pesan: "Tahun harus angka (1900-2026)." },
+            { nama: "[name='stok']", jenis: "stok", pesan: "Stok tidak boleh bernilai negatif." },
+            { nama: "[name='isbn']", jenis: "isbn", pesan: "ISBN hanya boleh berisi angka dan tanda hubung (-)." }
+        ];
 
-        const pengarang = form.querySelector("[name='pengarang']");
-        if (pengarang && pengarang.value.trim() === "") {
-            tampilkanError(pengarang, "Field ini wajib diisi.");
-            valid = false;
-        } else if (pengarang) {
-            hapusError(pengarang);
-        }
-
-        const tahunTerbit = form.querySelector("[name='tahun']");
-        if (tahunTerbit && tahunTerbit.value.trim() === "") {
-            tampilkanError(tahunTerbit, "Field ini wajib diisi.");
-            valid = false;
-        } else if (tahunTerbit) {
-            hapusError(tahunTerbit);
-        }
-
-        const stok = form.querySelector("[name='stok']");
-        if (stok && stok.value.trim() === "") {
-            tampilkanError(stok, "Field ini wajib diisi.");
-            valid = false;
-        } else if (stok) {
-            hapusError(stok);
-        }
-
-        // 5. Cek ISBN (Hanya ada di form buku)
-        const isbn = form.querySelector("[name='isbn']");
-        
-        // Kita cek HANYA jika field-nya tidak kosong (karena ISBN mungkin opsional)
-        if (isbn && isbn.value.trim() !== "") {
-            const teksIsbn = isbn.value.trim();
+        // 2. Suruh JavaScript mengulang (looping) pengecekan ke setiap aturan di atas
+        daftarAturan.forEach(function(item) {
+            const field = form.querySelector(item.nama);
             
-            // Menggunakan Regex (Regular Expression) untuk mengecek pola
-            // ^[0-9-]+$ artinya: "Dari awal (^) sampai akhir ($), isinya HANYA BOLEH angka 0-9 atau tanda -"
-            const polaBenar = /^[0-9-]+$/.test(teksIsbn);
-            
-            if (!polaBenar) {
-                tampilkanError(isbn, "ISBN hanya boleh berisi angka dan tanda hubung (-).");
-                valid = false;
-            } else {
-                hapusError(isbn);
+            // Lakukan pengecekan HANYA JIKA elemen tersebut ada di halaman ini
+            if (field) { 
+                let fieldValid = true;
+                const nilaiTeks = field.value.trim();
+
+                // 3. Tentukan logika pengecekan berdasarkan "jenis" aturan
+                if (item.jenis === "wajib" && nilaiTeks === "") {
+                    fieldValid = false;
+                } 
+                else if (item.jenis === "tahun") {
+                    const angka = parseInt(nilaiTeks, 10);
+                    if (isNaN(angka) || angka < 1900 || angka > 2026) fieldValid = false;
+                } 
+                else if (item.jenis === "stok") {
+                    const angka = parseInt(nilaiTeks, 10);
+                    if (isNaN(angka) || angka < 0) fieldValid = false;
+                } 
+                else if (item.jenis === "isbn" && nilaiTeks !== "") {
+                    // ISBN opsional, jadi pola (regex) hanya dicek kalau kolomnya diisi
+                    if (!/^[0-9-]+$/.test(nilaiTeks)) fieldValid = false;
+                }
+
+                // 4. Munculkan error atau hapus error berdasarkan hasil pengecekan di atas
+                if (!fieldValid) {
+                    tampilkanError(field, item.pesan);
+                    valid = false;
+                } else {
+                    hapusError(field);
+                }
             }
-        }
+        });
 
+        // 5. Jika ada minimal satu saja yang tidak valid, jegal proses simpannya!
         if (!valid) {
             e.preventDefault();
         }
