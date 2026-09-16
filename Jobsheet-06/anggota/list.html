@@ -28,6 +28,7 @@
                     <label for="search-input">Cari Nama Anggota</label>
                     <input type="text" id="search-input" placeholder="Ketik nama anggota">
                 </div>
+                <p id="loading-indicator" style="display:none;">Memuat data...</p>
                 <div class="table-responsive">
                 <table>
                     <thead>
@@ -40,72 +41,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>A001</td>
-                            <td>Siti Aminah</td>
-                            <td>Malang</td>
-                            <td>0812xxxx</td>
-                            <td>
-                                <button class="button-edit">Edit</button>
-                                <button class="btn-detail">Detail</button>
-                                <button type="button" class="btn-hapus">Hapus</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>A002</td>
-                            <td>Budi Santoso</td>
-                            <td>Batu</td>
-                            <td>0813xxxx</td>
-                            <td>
-                                <button class="button-edit">Edit</button>
-                                <button class="btn-detail">Detail</button>
-                                <button type="button" class="btn-hapus">Hapus</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>A003</td>
-                            <td>Diaz Prahardyan</td>
-                            <td>Blitar</td>
-                            <td>0821xxxx</td>
-                            <td>
-                                <button class="button-edit">Edit</button>
-                                <button class="btn-detail">Detail</button>
-                                <button type="button" class="btn-hapus">Hapus</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>A004</td>
-                            <td>Almuzzamil Hilmi</td>
-                            <td>Surabaya</td>
-                            <td>0846xxxx</td>
-                            <td>
-                                <button class="button-edit">Edit</button>
-                                <button class="btn-detail">Detail</button>
-                                <button type="button" class="btn-hapus">Hapus</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>A005</td>
-                            <td>Radian Rafie</td>
-                            <td>Kediri</td>
-                            <td>0898xxxx</td>
-                            <td>
-                                <button class="button-edit">Edit</button>
-                                <button class="btn-detail">Detail</button>
-                                <button type="button" class="btn-hapus">Hapus</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>A006</td>
-                            <td>Sarah Geiza</td>
-                            <td>Ponorogo</td>
-                            <td>0856xxxx</td>
-                            <td>
-                                <button class="button-edit">Edit</button>
-                                <button class="btn-detail">Detail</button>
-                                <button type="button" class="btn-hapus">Hapus</button>
-                            </td>
-                        </tr>
+                            <!-- Baris diisi dinamis oleh assets/js/buku.js via fetch('../data/anggota.json') --> 
                     </tbody>
                 </table>
                 </div>
@@ -116,5 +52,6 @@
             <p>&copy; 2026 SIMPUS-mini &mdash; Jobsheet 5</p>
         </footer>
         <script src="../assets/js/app.js"></script>
+        <script src="../assets/js/anggota.js"></script>
     </body>
 </html>
