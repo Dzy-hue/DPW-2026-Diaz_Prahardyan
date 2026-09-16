@@ -1,12 +1,51 @@
-[
-    { "judul": "Laskar Pelangi", "pengarang": "Andrea Hirata", "tahun": 2005, "stok": 4 },
-    { "judul": "Bumi Manusia", "pengarang": "Pramoedya Ananta Toer", "tahun": 1980, "stok": 2 },
-    { "judul": "Negeri 5 Menara", "pengarang": "Ahmad Fuadi", "tahun": 2009, "stok": 0 },
-    { "judul": "Filosofi Teras", "pengarang": "Henry Manampiring", "tahun": 2018, "stok": 5 },
-    { "judul": "Ronggeng Dukuh Paruk", "pengarang": "Ahmad Tohari", "tahun": 1982, "stok": 1 },
-    { "judul": "Cantik Itu Luka", "pengarang": "Eka Kurniawan", "tahun": 2002, "stok": 3 },
-    { "judul": "Pulang", "pengarang": "Tere Liye", "tahun": 2015, "stok": 2 },
-    { "judul": "Sang Pemimpi", "pengarang": "Andrea Hirata", "tahun": 2006, "stok": 6 },
-    { "judul": "Perahu Kertas", "pengarang": "Dee Lestari", "tahun": 2009, "stok": 0 },
-    { "judul": "Gadis Kretek", "pengarang": "Ratih Kumala", "tahun": 2012, "stok": 4 }
-]
+// Mengambil & Menampilkan Daftar Buku secara asinkron dari data/buku.json
+async function muatDaftarBuku() {
+    const tbody = document.querySelector(".table-responsive table tbody");
+    const loading = document.getElementById("loading-indicator");
+    if (!tbody) return;
+
+    loading.style.display = "block";
+    tbody.innerHTML = " ";
+
+    try {
+        // simulasi delay jaringan agar loading indicator terlihat
+        await new Promise((resolve) => setTimeout(resolve, 600));
+
+        const res = await fetch("../data/buku.json");
+        if (!res.ok) {
+            throw new Error("Gagal mengambil data (status " + res.status + ")");
+        }
+        const daftarBuku = await res.json();
+
+        daftarBuku.forEach(function (buku) {
+            const tr = document.createElement("tr");
+            tr.innerHTML =
+                "<td>" + buku.judul + "</td>" +
+                "<td>" + buku.pengarang + "</td>" +
+                "<td>" + buku.tahun + "</td>" +
+                "<td>" + buku.stok + "</td>" +
+                "<td>" +
+                "<button type=\"button\" class=\"button-edit\">Edit</button> " +
+                "<button type=\"button\" class=\"btn-detail\">Detail</button> " +
+                "<button type=\"button\" class=\"btn-hapus\">Hapus</button>" +
+                "</td>";
+            tbody.appendChild(tr);
+        });
+
+        // Sinkronisasi counter & tombol hapus setelah data selesai dibuat
+        if (typeof updateTableCounter === "function") {
+            updateTableCounter();
+        }
+        if (typeof initHapusConfirm === "function") {
+            initHapusConfirm();
+        }
+
+    } catch (err) {
+        tbody.innerHTML =
+            "<tr><td colspan=\"5\">Gagal memuat data: " + err.message + "</td></tr>";
+    } finally {
+        if (loading) loading.style.display = "none";
+    }
+}
+
+document.addEventListener("DOMContentLoaded", muatDaftarBuku);
