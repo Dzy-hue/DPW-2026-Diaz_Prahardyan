@@ -146,6 +146,58 @@ function initValidasiForm() {
     });
 }
 
+// ===== Fungsi Generik: Muat Data JSON ke Tabel =====
+async function muatTabelData(url, daftarKunci) {
+    const tbody = document.querySelector(".table-responsive table tbody");
+    const loading = document.getElementById("loading-indicator");
+    if (!tbody) return;
+
+    loading.style.display = "block";
+    tbody.innerHTML = " ";
+
+    try {
+        // simulasi delay jaringan agar loading indicator terlihat
+        await new Promise((resolve) => setTimeout(resolve, 600));
+
+        const res = await fetch(url);
+        if (!res.ok) {
+            throw new Error("Gagal mengambil data (status " + res.status + ")");
+        }
+        const dataList = await res.json();
+
+        dataList.forEach(function (item) {
+            const tr = document.createElement("tr");
+                // Membuat <td> secara dinamis berdasarkan daftar kunci properti
+                let selHtml = " ";
+                daftarKunci.forEach(function (kunci) {
+                    selHtml += `<td>${item[kunci] ?? " "}</td>`;
+                });
+                
+                // Tambahkan kolom aksi standar
+                selHtml += `
+                    <td>
+                        <button type="button" class="button-edit">Edit</button> 
+                        <button type="button" class="btn-detail">Detail</button> 
+                        <button type="button" class="btn-hapus">Hapus</button>
+                    </td>
+                `;
+                tr.innerHTML = selHtml;
+                tbody.appendChild(tr);
+
+            // Perbarui teks counter jika fiturnya ada
+            if (typeof updateTableCounter === "function") {
+                updateTableCounter(); 
+            }
+
+        });
+    } catch (err) {
+        tbody.innerHTML =
+            tbody.innerHTML = `<tr><td colspan="${daftarKunci.length + 1}" style="text-align:center; color:red;">Gagal memuat data: ${err.message}</td></tr>`;
+    } finally {
+        if (loading) loading.style.display = "none";
+    }
+}
+
 // Inisialisasi saat DOM siap
 document.addEventListener("DOMContentLoaded", function () {
     initNavToggle();
