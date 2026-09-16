@@ -45,7 +45,7 @@ header h1 {
 
 /* Hamburger menu tampil secara default di HP */
 .nav-toggle-label {
-    display: none; 
+    display: block; 
     font-size: 1.6rem;
     color: #fff;
     background: none;
@@ -59,6 +59,10 @@ header nav {
     width: 100%;
     order: 3;
     margin-top: 1rem;
+}
+
+header nav.nav-open {
+    display: block; /* Tampilkan menu saat hamburger diklik */
 }
 
 .nav-toggle:checked ~ nav {
@@ -173,7 +177,7 @@ td button {
 td button:hover { opacity: 0.85; }
 td button.button-edit { background-color: #f0ad4e; color: #fff; }
 td button.btn-detail { background-color: #5bc0de; color: #fff; }
-td button.button-delete { background-color: #d9534f; color: #fff; }
+td button.btn-hapus { background-color: #d9534f; color: #fff; }
 
 /* Form (Lebar maksimal default di HP) */
 form p { margin-bottom: 0.6rem; }
@@ -236,10 +240,6 @@ footer {
         max-width: 400px;
     }
 
-    header nav.nav-open {
-        display: block; /* Tampilkan menu saat hamburger diklik */
-    }
-
     /* Ubah Grid menjadi 2 kolom */
     main section:nth-of-type(2) {
         grid-template-columns: repeat(2, 1fr);
@@ -249,6 +249,10 @@ footer {
 /* Breakpoint 2: Desktop (Lebar 901px ke atas) */
 @media (min-width: 901px) {
     
+    .nav-toggle-label {
+        display: none; /* Sembunyikan hamburger menu di Desktop */
+    }
+
     header nav {
         display: block; /* Selalu tampil di Desktop */
         width: auto;
