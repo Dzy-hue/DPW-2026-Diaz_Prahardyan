@@ -31,12 +31,6 @@ async function muatDaftarAnggota() {
                 "</td>";
             tbody.appendChild(tr);
         });
-
-        // Sinkronisasi tombol hapus setelah data selesai dibuat
-        if (typeof initHapusConfirm === "function") {
-            initHapusConfirm();
-        }
-
     } catch (err) {
         tbody.innerHTML =
             "<tr><td colspan=\"5\">Gagal memuat data: " + err.message + "</td></tr>";

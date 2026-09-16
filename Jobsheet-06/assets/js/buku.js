@@ -30,16 +30,13 @@ async function muatDaftarBuku() {
                 "<button type=\"button\" class=\"btn-hapus\">Hapus</button>" +
                 "</td>";
             tbody.appendChild(tr);
+
+            // Perbarui teks counter jika fiturnya ada
+            if (typeof updateTableCounter === "function") {
+                updateTableCounter(); 
+            }
+
         });
-
-        // Sinkronisasi counter & tombol hapus setelah data selesai dibuat
-        if (typeof updateTableCounter === "function") {
-            updateTableCounter();
-        }
-        if (typeof initHapusConfirm === "function") {
-            initHapusConfirm();
-        }
-
     } catch (err) {
         tbody.innerHTML =
             "<tr><td colspan=\"5\">Gagal memuat data: " + err.message + "</td></tr>";
