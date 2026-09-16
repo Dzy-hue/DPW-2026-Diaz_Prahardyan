@@ -9,6 +9,23 @@ function initNavToggle() {
     });
 }
 
+function updateTableCounter() {
+    const table = document.querySelector(".table-responsive table");
+    const counterDiv = document.getElementById("table-counter");
+    if (!table || !counterDiv) return;
+
+    const semuaBaris = table.querySelectorAll("tbody tr");
+    let jumlahTampil = 0;
+
+    semuaBaris.forEach(function (row) {
+        if (row.style.display !== "none") {
+            jumlahTampil++;
+        }
+    });
+
+    counterDiv.textContent = `Menampilkan ${jumlahTampil} dari ${semuaBaris.length} data`;
+}
+
 // ===== Konfirmasi hapus (front-end only, belum ke server) =====
 function initHapusConfirm() {
     document.querySelectorAll(".btn-hapus").forEach(function (btn) {
@@ -18,6 +35,7 @@ function initHapusConfirm() {
             const yakin = confirm("Yakin ingin menghapus \"" + nama + "\"?");
             if (yakin && row) {
                 row.remove();
+                updateTableCounter(); // Update counter setelah menghapus baris
             }
         });
     });
@@ -37,6 +55,8 @@ function initTableFilter() {
             const teksJudul = kolomJudul ? kolomJudul.textContent.toLowerCase() : "";
             row.style.display = teksJudul.includes(Keyword) ? "" : "none";
         });
+
+        updateTableCounter(); // Update counter setelah filter
     });
 }
 
@@ -126,4 +146,5 @@ document.addEventListener("DOMContentLoaded", function () {
     initHapusConfirm();
     initTableFilter();
     initValidasiForm();
+    updateTableCounter(); // Tampilkan counter saat halaman pertama kali dimuat
 });
