@@ -71,17 +71,23 @@ Jalankan aplikasi melalui server lokal dengan salah satu opsi berikut:
 
 2. PHP Built-in Server: Buka terminal di dalam folder proyek ini, lalu jalankan:
 
-php -S localhost:8000
+                           php -S localhost:8000
 
 Buka peramban dan akses alamat http://localhost:8000/index.html.
 
 ✅ Hasil Pengujian Fitur
 [x] Pemuatan data otomatis saat halaman selesai dimuat (DOMContentLoaded).
+
 [x] Teks loading muncul selama proses pengambilan data berlangsung dan hilang setelah selesai.
+
 [x] Data buku (10 data) dan anggota (empat data) berhasil dirender ke tabel.
+
 [x] Fitur pencarian menyaring data secara instan dan memperbarui teks counter.
+
 [x] Tombol hapus memunculkan dialog konfirmasi dan menghapus baris dari DOM secara dinamis.
+
 [x] Tombol “Muat Ulang Data” berhasil memuat kembali baris yang sempat terhapus.
+
 [x] Penanganan galat 404 menampilkan baris peringatan merah jika berkas JSON tidak ditemukan.
 
 📌 Catatan Tambahan
