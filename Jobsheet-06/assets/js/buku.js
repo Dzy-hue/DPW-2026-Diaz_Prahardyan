@@ -1,5 +1,5 @@
 function muatDataBuku() {
-    muatTabelData("../data/buku.json", ["judul", "pengarang", "tahun", "stok"]);
+    muatTabelData("../data/buku.json", ["judul", "pengarang",  "kategori", "tahun", "stok"]);
 }
 
 document.addEventListener("DOMContentLoaded", function() {
