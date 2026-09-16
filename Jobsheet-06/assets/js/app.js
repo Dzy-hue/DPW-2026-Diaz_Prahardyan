@@ -31,9 +31,21 @@ function updateTableCounter() {
 // tombol .btn-hapus belum tentu ada saat DOMContentLoaded.
 function initHapusConfirm() {
     document.addEventListener("click", function (e) {
-        const btn = e.target.closest(".btn-hapus");
-        if (!btn) return;
+        // 1. Tampilkan elemn yang sebenarnya diklik oleh kursor
+        console.log("Elemen yang diklik (e.target):", e.target);
 
+        const btn = e.target.closest(".btn-hapus");
+
+        // 2. Tampilkan hasil penyaringan .closest()
+        console.log("Hasil penyaringan .closest('.btn-hapus):", btn);
+
+        if (!btn) {
+            console.log(" Bukan tombol hapus, abaikan.");
+            return;
+        }
+
+        console.log(" Tombol hapus terdeteksi! Membuka konfirmasi...");
+        
         const row = btn.closest("tr");
         const nama = row ? row.querySelector("td")?.textContent : "data ini";            
         const yakin = confirm("Yakin ingin menghapus \"" + nama + "\"?");
