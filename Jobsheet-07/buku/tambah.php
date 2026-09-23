@@ -1,30 +1,10 @@
-<!DOCTYPE html>
-<html lang="id">
-    <head>
-        <link rel="stylesheet" href="../assets/css/style.css">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>SIMPUS-mini | Tambah Buku</title>
-    </head>
-    <body>
-        <header>
-           <h1>SIMPUS-mini</h1>
-           <button type="button" id="nav-toggle-btn" class="nav-toggle-label" aria-label="Menu">&#9776;</button>
-           <nav>
-               <ul>
-                   <li><a href="../index.html">Beranda</a></li>
-                   <li><a href="list.html">Daftar Buku</a></li>
-                   <li><a href="tambah.html">Tambah Buku</a></li>
-                   <li><a href="../anggota/list.html">Daftar Anggota</a></li>
-                   <li><a href="../anggota/tambah.html">Tambah Anggota</a></li>
-               </ul> 
-           </nav> 
-        </header>
-
-        <main>
+<?php
+$page_title = "Tambah Buku";
+include _DIR_ . '/../includes/header.php';
+?>
             <section>
                 <h2>Tambah Buku Perpustakaan</h2>
-                <form id="form-tambah" novalidate>
+                <form id="form-tambah" method="post" action="proses_tambah.php">
                       <p>
                         <label for="judul">Judul</label><br>
                         <input type="text" id="judul" name="judul" required>
@@ -58,11 +38,4 @@
                       </p>
                 </form>
             </section>
-        </main>
-
-        <footer>
-            <p>&copy; 2026 SIMPUS-mini &mdash; Jobsheet 5</p>
-        </footer>
-        <script src="../assets/js/app.js"></script>
-    </body>
-</html>
+<?php include _DIR_ . '/../includes/footer.php'; ?>
