@@ -9,53 +9,20 @@ function initNavToggle() {
     });
 }
 
-function updateTableCounter() {
-    const table = document.querySelector(".table-responsive table");
-    const counterDiv = document.getElementById("table-counter");
-    if (!table || !counterDiv) return;
-
-    const semuaBaris = table.querySelectorAll("tbody tr");
-    let jumlahTampil = 0;
-
-    semuaBaris.forEach(function (row) {
-        if (row.style.display !== "none") {
-            jumlahTampil++;
-        }
-    });
-
-    counterDiv.textContent = `Menampilkan ${jumlahTampil} dari ${semuaBaris.length} data`;
-}
-
+// ===== Konfirmasi hapus (front-end only, belum ke server) =====
 // Memakai event delegation di document karena baris tabel sekarang
 // dirender dinamis via fetch (lihat buku.js/anggota.js) sehingga
 // tombol .btn-hapus belum tentu ada saat DOMContentLoaded.
 function initHapusConfirm() {
     document.addEventListener("click", function (e) {
-        // 1. Tampilkan elemn yang sebenarnya diklik oleh kursor
-        console.log("Elemen yang diklik (e.target):", e.target);
-
         const btn = e.target.closest(".btn-hapus");
+        if (!btn) return;
 
-        // 2. Tampilkan hasil penyaringan .closest()
-        console.log("Hasil penyaringan .closest('.btn-hapus):", btn);
-
-        if (!btn) {
-            console.log(" Bukan tombol hapus, abaikan.");
-            return;
-        }
-
-        console.log(" Tombol hapus terdeteksi! Membuka konfirmasi...");
-        
         const row = btn.closest("tr");
-        const nama = row ? row.querySelector("td")?.textContent : "data ini";            
+        const nama = row ? row.querySelector("td")?.textContent : "data ini";
         const yakin = confirm("Yakin ingin menghapus \"" + nama + "\"?");
         if (yakin && row) {
             row.remove();
-
-            // Perbarui teks counter jika fiturnya ada
-            if (typeof updateTableCounter === "function") {
-                updateTableCounter(); 
-            }
         }
     });
 }
@@ -67,18 +34,12 @@ function initTableFilter() {
     if (!input || !table) return;
 
     input.addEventListener("keyup", function () {
-        const Keyword = input.value.toLowerCase();
+        const keyword = input.value.toLowerCase();
         const rows = table.querySelectorAll("tbody tr");
         rows.forEach(function (row) {
-            const kolomJudul = row.querySelector("td");
-            const teksJudul = kolomJudul ? kolomJudul.textContent.toLowerCase() : "";
-            row.style.display = teksJudul.includes(Keyword) ? "" : "none";
+            const teks = row.textContent.toLowerCase();
+            row.style.display = teks.includes(keyword) ? "" : "none";
         });
-
-        // Perbarui teks counter jika fiturnya ada
-        if (typeof updateTableCounter === "function") {
-            updateTableCounter(); 
-        }
     });
 }
 
@@ -98,7 +59,6 @@ function hapusError(input) {
     }
 }
 
-// ===== Fungsi Utama: Validasi Form (Versi Refactor) =====
 function initValidasiForm() {
     const form = document.getElementById("form-tambah");
     if (!form) return;
@@ -106,115 +66,53 @@ function initValidasiForm() {
     form.addEventListener("submit", function (e) {
         let valid = true;
 
-        // 1. Kumpulkan semua aturan dalam satu Array (Daftar)
-        const daftarAturan = [
-            { nama: "[name='judul'], [name='nama']", jenis: "wajib", pesan: "Field ini wajib diisi." },
-            { nama: "[name='pengarang']", jenis: "wajib", pesan: "Nama pengarang wajib diisi." },
-            { nama: "[name='tahun']", jenis: "tahun", pesan: "Tahun harus angka (1900-2026)." },
-            { nama: "[name='stok']", jenis: "stok", pesan: "Stok tidak boleh bernilai negatif." },
-            { nama: "[name='isbn']", jenis: "isbn", pesan: "ISBN hanya boleh berisi angka dan tanda hubung (-)." }
-        ];
+        const judul = form.querySelector("[name='judul'], [name='nama']");
+        if (judul && judul.value.trim() === "") {
+            tampilkanError(judul, "Field ini wajib diisi.");
+            valid = false;
+        } else if (judul) {
+            hapusError(judul);
+        }
 
-        // 2. Suruh JavaScript mengulang (looping) pengecekan ke setiap aturan di atas
-        daftarAturan.forEach(function(item) {
-            const field = form.querySelector(item.nama);
-            
-            // Lakukan pengecekan HANYA JIKA elemen tersebut ada di halaman ini
-            if (field) { 
-                let fieldValid = true;
-                const nilaiTeks = field.value.trim();
+        const pengarang = form.querySelector("[name='pengarang']");
+        if (pengarang && pengarang.value.trim() === "") {
+            tampilkanError(pengarang, "Pengarang wajib diisi.");
+            valid = false;
+        } else if (pengarang) {
+            hapusError(pengarang);
+        }
 
-                // 3. Tentukan logika pengecekan berdasarkan "jenis" aturan
-                if (item.jenis === "wajib" && nilaiTeks === "") {
-                    fieldValid = false;
-                } 
-                else if (item.jenis === "tahun") {
-                    const angka = parseInt(nilaiTeks, 10);
-                    if (isNaN(angka) || angka < 1900 || angka > 2026) fieldValid = false;
-                } 
-                else if (item.jenis === "stok") {
-                    const angka = parseInt(nilaiTeks, 10);
-                    if (isNaN(angka) || angka < 0) fieldValid = false;
-                } 
-                else if (item.jenis === "isbn" && nilaiTeks !== "") {
-                    // ISBN opsional, jadi pola (regex) hanya dicek kalau kolomnya diisi
-                    if (!/^[0-9-]+$/.test(nilaiTeks)) fieldValid = false;
-                }
-
-                // 4. Munculkan error atau hapus error berdasarkan hasil pengecekan di atas
-                if (!fieldValid) {
-                    tampilkanError(field, item.pesan);
-                    valid = false;
-                } else {
-                    hapusError(field);
-                }
+        const tahun = form.querySelector("[name='tahun']");
+        if (tahun) {
+            const nilai = parseInt(tahun.value, 10);
+            if (isNaN(nilai) || nilai < 1900 || nilai > 2026) {
+                tampilkanError(tahun, "Tahun harus di antara 1900-2026.");
+                valid = false;
+            } else {
+                hapusError(tahun);
             }
-        });
+        }
 
-        // 5. Jika ada minimal satu saja yang tidak valid, jegal proses simpannya!
+        const stok = form.querySelector("[name='stok']");
+        if (stok) {
+            const nilai = parseInt(stok.value, 10);
+            if (isNaN(nilai) || nilai < 0) {
+                tampilkanError(stok, "Stok tidak boleh negatif.");
+                valid = false;
+            } else {
+                hapusError(stok);
+            }
+        }
+
         if (!valid) {
             e.preventDefault();
         }
     });
 }
 
-// ===== Fungsi Generik: Muat Data JSON ke Tabel =====
-async function muatTabelData(url, daftarKunci) {
-    const tbody = document.querySelector(".table-responsive table tbody");
-    const loading = document.getElementById("loading-indicator");
-    if (!tbody) return;
-
-    loading.style.display = "block";
-    tbody.innerHTML = " ";
-
-    try {
-        // simulasi delay jaringan agar loading indicator terlihat
-        await new Promise((resolve) => setTimeout(resolve, 3000));
-
-        const res = await fetch(url);
-        if (!res.ok) {
-            throw new Error("Gagal mengambil data (status " + res.status + ")");
-        }
-        const dataList = await res.json();
-
-        dataList.forEach(function (item) {
-            const tr = document.createElement("tr");
-                // Membuat <td> secara dinamis berdasarkan daftar kunci properti
-                let selHtml = " ";
-                daftarKunci.forEach(function (kunci) {
-                    selHtml += `<td>${item[kunci] ?? " "}</td>`;
-                });
-                
-                // Tambahkan kolom aksi standar
-                selHtml += `
-                    <td>
-                        <button type="button" class="button-edit">Edit</button> 
-                        <button type="button" class="btn-detail">Detail</button> 
-                        <button type="button" class="btn-hapus">Hapus</button>
-                    </td>
-                `;
-                tr.innerHTML = selHtml;
-                tbody.appendChild(tr);
-
-            // Perbarui teks counter jika fiturnya ada
-            if (typeof updateTableCounter === "function") {
-                updateTableCounter(); 
-            }
-
-        });
-    } catch (err) {
-        tbody.innerHTML =
-            tbody.innerHTML = `<tr><td colspan="${daftarKunci.length + 1}" style="text-align:center; color:red;">Gagal memuat data: ${err.message}</td></tr>`;
-    } finally {
-        if (loading) loading.style.display = "none";
-    }
-}
-
-// Inisialisasi saat DOM siap
 document.addEventListener("DOMContentLoaded", function () {
     initNavToggle();
     initHapusConfirm();
     initTableFilter();
     initValidasiForm();
-    updateTableCounter(); // Tampilkan counter saat halaman pertama kali dimuat
 });
