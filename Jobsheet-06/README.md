@@ -13,7 +13,7 @@ Proyek ini adalah aplikasi antarmuka berbasis web untuk mengelola data perpustak
 | Keterangan | Detail |
 | :--- | :--- |
 | **Nama** | Diaz Prahardyan |
-| **Kelas** | TI-1D |
+| **Kelas** | TI-2F |
 | **NIM** | [254107020119] |
 | **Program Studi** | D4-Teknik Informatika, Politeknik Negeri Malang |
 

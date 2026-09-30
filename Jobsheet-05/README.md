@@ -13,7 +13,7 @@ Proyek ini adalah aplikasi antarmuka berbasis web statis untuk mengelola data pe
 | Keterangan | Detail |
 | :--- | :--- |
 | **Nama** | Diaz Prahardyan |
-| **Kelas** | TI-1D |
+| **Kelas** | TI-2F |
 | **NIM** | [254107020119] |
 | **Program Studi** | D4-Teknik Informatika, Politeknik Negeri Malang |
 
