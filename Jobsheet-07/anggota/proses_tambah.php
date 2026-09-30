@@ -2,8 +2,8 @@
 session_start();
 
 // 1. Menangkap data dari $_POST
-$no_anggota = trim($_POST['nama'] ?? '');
-$nama = trim($_POST['no_anggota'] ?? '');
+$nama = trim($_POST['nama'] ?? '');
+$no_anggota = trim($_POST['no_anggota'] ?? '');
 $alamat = $_POST['alamat'] ?? '';
 $no_hp = trim($_POST['no_hp'] ?? '');
 
@@ -16,7 +16,7 @@ if ($no_anggota === '') {
     $errors[] = "Nomor Anggota wajib diisi.";
 }
 if ($alamat === '') {
-    $errors[] = "Alamat wahib diisi.";
+    $errors[] = "Alamat wajib diisi.";
 }
 if ($no_hp === '') {
     $errors[] = "Nomor HP wajib diisi.";
@@ -50,7 +50,7 @@ $_SESSION['anggota'][] = [
 // 6. Buat pesan sukses dan arahkan pengguna ke halaman Daftar Buku
 $_SESSION['flash'] = [
     'type' => 'success', 
-    'pesan' => 'Buku berhasil ditambahkan.'
+    'pesan' => 'Anggota berhasil ditambahkan.'
 ];
 header('Location: list.php');
 exit;
