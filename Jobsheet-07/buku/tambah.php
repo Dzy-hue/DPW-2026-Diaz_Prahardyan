@@ -13,27 +13,27 @@ unset($_SESSION['flash']);
                 <?php endif; ?>         
 
                 <form id="form-tambah" method="post" action="proses_tambah.php">
-                      <p class="form-group">
+                      <p>
                         <label for="judul">Judul Buku</label><br>
                         <input type="text" id="judul" name="judul" required>
                       </p>
-                      <p class="form-group">
+                      <p>
                         <label for="pengarang">Pengarang</label><br>
                         <input type="text" id="pengarang" name="pengarang" required>
                       </p>
-                      <p class="form-group">
+                      <p>
                         <label for="tahun">Tahun Terbit</label><br>
                         <input type="number" id="tahun" name="tahun" min="1900" max="2026" required>
                       </p>
-                      <p class="form-group">
+                      <p>
                         <label for="isbn">ISBN</label><br>
                         <input type="text" id="isbn" name="isbn" placeholder="Contoh: 978-602-8519-93-9" required>
                       </p>
-                      <p class="form-group">
+                      <p>
                         <label for="stok">Stok</label><br>
                         <input type="number" id="stok" name="stok" min="0" required>
                       </p>
-                      <p class="form-group">
+                      <p>
                         <label for="kategori">Kategori</label><br>
                         <select id="kategori" name="kategori">
                             <option value="">-- Pilih Kategori --</option>
@@ -45,7 +45,7 @@ unset($_SESSION['flash']);
                         </select>
                       </p>
                       <p>
-                        <button type="submit">Simpan Data</button>  
+                        <button type="submit" class="btn-simpan">Simpan Data</button>  
                       </p>
                 </form>
             </section>

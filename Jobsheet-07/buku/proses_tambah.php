@@ -20,6 +20,12 @@ if ($pengarang === '') {
 if (!is_numeric($tahun) || $tahun < 1900 || $tahun > 2026) {
     $errors[] = "Tahun harus di antara 1900-2026.";
 }
+if ($isbn !== '') {
+    // ^[0-9-]+$ artinya dari awal (^) sampai akhir ($) hanya boleh ada angka 0-9 dan tanda hubung (-)
+    if (!preg_match('/^[0-9-]+$/', $isbn)) {
+        $errors[] = "Format ISBN tidak valid. Hanya gunakan angka dan tanda hubung (-).";
+    }
+}
 if (!is_numeric($stok) || $stok < 0) {
     $errors[] = "Stok tidak boleh negatif.";
 }

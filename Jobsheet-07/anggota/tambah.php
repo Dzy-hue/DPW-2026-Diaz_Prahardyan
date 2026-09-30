@@ -30,7 +30,7 @@ unset($_SESSION['flash']);
                         <input type="text" id="no_hp" name="no_hp" required>
                       </p>
                       <p>
-                        <button type="submit">Simpan Data</button>  
+                        <button type="submit" class="btn-simpan">Simpan Data</button>  
                       </p>
                 </form>
             </section>
