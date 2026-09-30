@@ -105,42 +105,6 @@ section h2 {
     color: #003512;
 }
 
-/* Grid Kartu Statistik default-nya 1 kolom di HP */
-main section:nth-of-type(2) {
-    display: grid;
-    grid-template-columns: 1fr; 
-    gap: 1rem;
-}
-
-main section:nth-of-type(2) h2 {
-    grid-column: 1 / -1;
-}
-
-main section:nth-of-type(2) article {
-    background-color: #eef4fa;
-    border-radius: 8px;
-    padding: 1.25rem;
-    text-align: center;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-main section:nth-of-type(2) article:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
-}
-
-main section:nth-of-type(2) article h3 {
-    font-size: 0.95rem;
-    color: #55677a;
-    margin-bottom: 0.5rem;
-}
-
-main section:nth-of-type(2) article p {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #003512;
-}
-
 /* Tabel Dasar */
 table {
     width: 100%;
@@ -282,9 +246,9 @@ footer {
         max-width: 400px;
     }
 
-    /* Ubah Grid menjadi 2 kolom */
-    main section:nth-of-type(2) {
+    .stats-grid {
         grid-template-columns: repeat(2, 1fr);
+        width: 100%; /* Memaksa grid mengisi penuh lebar layar */
     }
 }
 
@@ -309,9 +273,9 @@ footer {
         gap: 1.25rem;
     }
 
-    /* Ubah Grid menjadi 4 kolom penuh */
-    main section:nth-of-type(2) {
-        grid-template-columns: repeat(4, 1fr);
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%; /* Memaksa grid mengisi penuh lebar layar */
     }
 }
 
@@ -338,4 +302,42 @@ footer {
 .flash-error {
     background-color: #f8d7da;
     color: #721c24;
+}
+
+/* ===== Layout Grid 2x2 untuk Ringkasan ===== */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) !important; /* Paksa 2 kolom menyamping */
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.stat-card {
+    background-color: #eef4fa;
+    border-radius: 8px;
+    padding: 1.25rem 1rem;
+    text-align: center;
+    border: 1px solid #e1e9f1;
+    /* Tambahan animasi agar pergerakannya halus */
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+/* Efek saat kursor menyentuh kartu */
+.stat-card:hover {
+    transform: translateY(-6px); /* Kartu terangkat ke atas 6px */
+    box-shadow: 0 8px 15px rgba(0, 53, 18, 0.1); /* Muncul bayangan lembut di bawahnya */
+    background-color: #e4edf7; /* Warna biru latar sedikit menggelap */
+    cursor: default; /* Kursor standar (atau ganti 'pointer' jika ingin bentuk tangan) */
+}
+
+.stat-card h3 {
+    font-size: 0.9rem;
+    color: #55677a;
+    margin-bottom: 0.4rem;
+}
+
+.stat-card p {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #0c3b19;
 }

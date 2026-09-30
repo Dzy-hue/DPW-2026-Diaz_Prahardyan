@@ -1,6 +1,6 @@
 <?php
 $page_title = "Daftar Anggota";
-include _DIR_ . '/../includes/header.php';
+include __DIR__ . '/../includes/header.php';
 
 $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
@@ -53,4 +53,4 @@ $daftarAnggota = $_SESSION['anggota'] ?? [];
                 </table>
                 </div>
             </section>
-<?php include __DIR__ . '/includes/footer.php'; ?>
+<?php include __DIR__ . '/../includes/footer.php'; ?>

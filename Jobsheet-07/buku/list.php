@@ -1,6 +1,6 @@
 <?php
 $page_title = "Daftar Buku";
-include _DIR_ . '/../includes/header.php';
+include __DIR__ . '/../includes/header.php';
 
 $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
@@ -15,7 +15,7 @@ $daftarBuku = $_SESSION['buku'] ?? [];
 
                 <div class="search-box">
                     <label for="search-input">Cari Judul Buku</label>
-                    <input type="text" id="search-input" placeholder="Ketik judul buku">
+                    <input type="text" id="search-input" placeholder="Ketik judul buku...">
                 </div>
             
                 <div class="table-responsive">
@@ -40,9 +40,9 @@ $daftarBuku = $_SESSION['buku'] ?? [];
                              <tr>
                                 <td><?php echo $buku['judul']; ?></td>
                                 <td><?php echo $buku['pengarang']; ?></td>
+                                <td><?php echo $buku['kategori']; ?></td>
                                 <td><?php echo $buku['tahun']; ?></td>
                                 <td><?php echo $buku['stok']; ?></td>
-                                <td><?php echo $buku['kategori']; ?></td>
                                 <td>
                                     <button type="button" class="button-edit">Edit</button>
                                     <button type="button" class="btn-detail">Detail</button>
@@ -55,4 +55,4 @@ $daftarBuku = $_SESSION['buku'] ?? [];
                 </table>
                 </div>
             </section>
-<?php include __DIR__ . '/includes/footer.php'; ?>
+<?php include __DIR__ . '/../includes/footer.php'; ?>

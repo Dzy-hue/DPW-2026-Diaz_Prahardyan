@@ -4,10 +4,10 @@ session_start();
 // 1. Menangkap data dari $_POST
 $judul = trim($_POST['judul'] ?? '');
 $pengarang = trim($_POST['pengarang'] ?? '');
+$kategori = trim($_POST['kategori'] ?? '');
 $tahun = $_POST['tahun'] ?? '';
 $isbn = trim($_POST['isbn'] ?? '');
 $stok = $_POST['stok'] ?? '';
-$kategori = trim($_POST['kategori'] ?? '');
 
 // 2. Validasi Server-Side
 $errors = [];
