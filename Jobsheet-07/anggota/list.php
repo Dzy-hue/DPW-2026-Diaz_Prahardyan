@@ -37,8 +37,8 @@ $daftarAnggota = $_SESSION['anggota'] ?? [];
                     <?php else: ?>
                         <?php foreach ($daftarAnggota as $anggota): ?>
                         <tr>
-                            <td><?php echo $anggota['nama']; ?></td>
                             <td><?php echo $anggota['no_anggota']; ?></td>
+                            <td><?php echo $anggota['nama']; ?></td>
                             <td><?php echo $anggota['alamat']; ?></td>
                             <td><?php echo $anggota['no_hp']; ?></td>
                             <td>

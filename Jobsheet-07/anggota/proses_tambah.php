@@ -14,6 +14,8 @@ if ($nama === '') {
 }
 if ($no_anggota === '') {
     $errors[] = "Nomor Anggota wajib diisi.";
+} elseif (!preg_match('/^[a-zA-Z0-9]+$/', $no_anggota)) {
+    $errors[] = "Nomor Anggota hanya boleh berisi huruf dan angka (tanpa spasi).";
 }
 if ($alamat === '') {
     $errors[] = "Alamat wajib diisi.";
@@ -22,6 +24,8 @@ if ($no_hp === '') {
     $errors[] = "Nomor HP wajib diisi.";
 } elseif (!is_numeric($no_hp)) {
     $errors[] = "Nomor HP harus berupa angka.";
+} elseif (strlen($no_hp) < 10 || strlen($no_hp) > 14) {
+    $errors[] = "Nomor HP harus berjumlah antara 10 hingga 14 digit.";
 }
 
 // 3. Jika ada error, simpan pesan flash dan kembalikan ke form

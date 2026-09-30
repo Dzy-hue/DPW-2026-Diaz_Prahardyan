@@ -19,11 +19,11 @@ unset($_SESSION['flash']);
                       </p>
                       <p>
                         <label for="no_anggota">No. Anggota</label><br>
-                        <input type="text" id="no_anggota" name="no_anggota" required>
+                        <input type="text" id="no_anggota" name="no_anggota" placeholder="Contoh: A001" required>
                       </p>
                       <p>
                         <label for="alamat">Alamat</label><br>
-                        <input type="text" id="alamat" name="alamat" required>
+                        <input type="text" id="alamat" name="alamat" placeholder="Contoh: Jl. Soekarno Hatta No. 9, Malang" required>
                       </p>
                       <p>
                         <label for="no_hp">No. HP</label><br>
