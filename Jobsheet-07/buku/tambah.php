@@ -1,12 +1,20 @@
 <?php
 $page_title = "Tambah Buku";
 include _DIR_ . '/../includes/header.php';
+
+$flash = $_SESSION['flash'] ?? null;
+unset($_SESSION['flash']);
 ?>
             <section>
                 <h2>Tambah Buku Perpustakaan</h2>
+
+                <?php if ($flash): ?>
+                    <p class="flash flash-<?php echo $flash['type']; ?>"><?php echo $flash['pesan']; ?></p>
+                <?php endif; ?>         
+
                 <form id="form-tambah" method="post" action="proses_tambah.php">
                       <p>
-                        <label for="judul">Judul</label><br>
+                        <label for="judul">Judul Buku</label><br>
                         <input type="text" id="judul" name="judul" required>
                       </p>
                       <p>
@@ -28,13 +36,16 @@ include _DIR_ . '/../includes/header.php';
                       <p>
                         <label for="kategori">Kategori</label><br>
                         <select id="kategori" name="kategori">
+                            <option value="">-- Pilih Kategori --</option>
+                            <option value="Novel">Novel</option>
+                            <option value="Sastra">Sastra</option>
                             <option value="fiksi">Fiksi</option>
                             <option value="non-fiksi">Non-Fiksi</option>
                             <option value="referensi">Referensi</option>
                         </select>
                       </p>
                       <p>
-                        <button type="submit">Simpan</button>  
+                        <button type="submit">Simpan Data</button>  
                       </p>
                 </form>
             </section>
