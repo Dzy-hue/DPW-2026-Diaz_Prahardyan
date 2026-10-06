@@ -1,7 +1,7 @@
 <?php
 $page_title = "Daftar Buku";
 include __DIR__ . '/../includes/header.php';
-require __DIR__ . '/includes/koneksi.php';
+require __DIR__ . '/../includes/koneksi.php';
 
 $flash = $_SESSION['flash'] ?? null;
 // var_dump($flash); //Debugging: Menampilkan isi flash sebelum di-unset
