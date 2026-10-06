@@ -1,5 +1,6 @@
 <?php
 session_start();
+require __DIR__ . '/includes/koneksi.php';
 
 // 1. Menangkap data dari $_POST
 $judul = trim($_POST['judul'] ?? '');
@@ -44,6 +45,9 @@ if (!empty($errors)) {
 if (!isset($_SESSION['buku'])) {
     $_SESSION['buku'] = [];
 }
+
+// var_dumbp($_SESSION['buku']); // Debugging: Menampilkan isi keranjang sebelum menambahkan buku baru
+// die();
 
 // 5. Tambahkan data buku baru ke dalam keranjang
 $_SESSION['buku'][] = [

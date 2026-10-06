@@ -27,7 +27,7 @@ unset($_SESSION['flash']);
                       </p>
                       <p>
                         <label for="isbn">ISBN</label><br>
-                        <input type="text" id="isbn" name="isbn" placeholder="Contoh: 978-602-8519-93-9" required>
+                        <input type="text" id="isbn" name="isbn" placeholder="Contoh: 978-602-8519-93-9">
                       </p>
                       <p>
                         <label for="stok">Stok</label><br>

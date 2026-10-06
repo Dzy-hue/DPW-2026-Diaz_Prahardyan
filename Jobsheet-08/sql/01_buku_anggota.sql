@@ -8,9 +8,9 @@ create table if not exists buku (
     judul varchar(255) not null,
     pengarang varchar(255) not null,
     tahun integer not null,
-    isbn varchar(50) not null,
+    isbn varchar(50),
     stok integer not null default 0,
-    kategori varchar(50) not null,
+    kategori varchar(50)
 );
 
 create table if not exists anggota (

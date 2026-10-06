@@ -1,10 +1,17 @@
 <?php
 $page_title = "Daftar Buku";
 include __DIR__ . '/../includes/header.php';
+require __DIR__ . '/includes/koneksi.php';
 
 $flash = $_SESSION['flash'] ?? null;
+// var_dump($flash); //Debugging: Menampilkan isi flash sebelum di-unset
+// die();
+
 unset($_SESSION['flash']);
 $daftarBuku = $_SESSION['buku'] ?? [];
+// var_dump($daftarBuku); // Debugging: Menampilkan isi daftar buku sebelum ditampilkan
+// die();
+
 ?>
             <section>
                 <h2>Daftar Buku</h2>

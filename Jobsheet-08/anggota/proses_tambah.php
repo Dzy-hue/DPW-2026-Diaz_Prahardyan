@@ -1,5 +1,6 @@
 <?php
 session_start();
+require __DIR__ . '/includes/koneksi.php';
 
 // 1. Menangkap data dari $_POST
 $nama = trim($_POST['nama'] ?? '');
