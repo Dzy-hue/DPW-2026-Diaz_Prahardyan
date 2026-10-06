@@ -55,10 +55,4 @@ $daftarAnggota = $pdo->query("SELECT * FROM anggota ORDER BY id DESC")->fetchAll
                 </table>
                 </div>
             </section>
-
-            <div style="text-align: center; margin-top: 20px;">
-                <a href="reset.php" style="background-color: #dc3545; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold; display: inline-block;">
-                    ⚠️ Reset Semua Data
-                </a>
-            </div>
 <?php include __DIR__ . '/../includes/footer.php'; ?>

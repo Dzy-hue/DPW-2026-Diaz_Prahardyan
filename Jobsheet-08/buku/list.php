@@ -8,9 +8,22 @@ $flash = $_SESSION['flash'] ?? null;
 // die();
 
 unset($_SESSION['flash']);
-$daftarBuku = $pdo->query("SELECT * FROM buku ORDER BY id DESC")->fetchAll(PDO::FETCH_ASSOC);
-// var_dump($daftarBuku); // Debugging: Menampilkan isi daftar buku sebelum ditampilkan
-// die();
+
+// Latihan Tambahan 3
+// 1. Tangkap kata kunci dari url jika ada (misal: list.php?q=Laskar)
+$keyword = $_GET['q'] ?? '';
+
+if ($keyword !== '') {
+    // 2. Jika ada pencarian, gunakan prepare() dan ILIKE
+    $stmt = $pdo->prepare("SELECT * FROM buku WHERE judul ILIKE :keyword ORDER BY id DESC");
+    $stmt->execute(['keyword' => "%$keyword%"]);
+    $daftarBuku = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} else {
+    // 3. Jika tidak ada pencarian, tampilkan semua buku
+    $daftarBuku = $pdo->query("SELECT * FROM buku ORDER BY id DESC")->fetchAll(PDO::FETCH_ASSOC);
+    // var_dump($daftarBuku); // Debugging: Menampilkan isi daftar buku sebelum ditampilkan
+    // die();
+}
 
 ?>
             <section>
@@ -64,10 +77,4 @@ $daftarBuku = $pdo->query("SELECT * FROM buku ORDER BY id DESC")->fetchAll(PDO::
                 </table>
                 </div>
             </section>
-
-            <div style="text-align: center; margin-top: 20px;">
-                <a href="reset.php" style="background-color: #dc3545; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold; display: inline-block;">
-                    ⚠️ Reset Semua Data
-                </a>
-            </div>
 <?php include __DIR__ . '/../includes/footer.php'; ?>
