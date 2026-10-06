@@ -8,7 +8,7 @@ $flash = $_SESSION['flash'] ?? null;
 // die();
 
 unset($_SESSION['flash']);
-$daftarBuku = $_SESSION['buku'] ?? [];
+$daftarBuku = $pdo->query("SELECT * FROM buku ORDER BY id DESC")->fetchAll(PDO::FETCH_ASSOC);
 // var_dump($daftarBuku); // Debugging: Menampilkan isi daftar buku sebelum ditampilkan
 // die();
 

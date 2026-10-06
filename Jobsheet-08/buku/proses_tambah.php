@@ -42,22 +42,36 @@ if (!empty($errors)) {
 }
 
 // 4. Jika valid, inisialisasi keranjang $_SESSION jika belum ada
-if (!isset($_SESSION['buku'])) {
-    $_SESSION['buku'] = [];
-}
+// if (!isset($_SESSION['buku'])) {
+//     $_SESSION['buku'] = [];
+// }
 
 // var_dumbp($_SESSION['buku']); // Debugging: Menampilkan isi keranjang sebelum menambahkan buku baru
 // die();
 
 // 5. Tambahkan data buku baru ke dalam keranjang
-$_SESSION['buku'][] = [
+// $_SESSION['buku'][] = [
+//     'judul' => $judul,
+//     'pengarang' => $pengarang,
+//     'tahun' => (int) $tahun,
+//     'isbn' => $isbn,
+//     'stok' => (int) $stok,
+//     'kategori' => $kategori,
+// ];
+
+$stmt = $pdo->prepare(
+    "INSERT INTO buku (judul, pengarang, kategori, tahun, isbn, stok)
+    VALUES (:judul, :pengarang, :kategori, :tahun, :isbn, :stok)
+    RETURNING id"
+);
+$stmt->execute([
     'judul' => $judul,
     'pengarang' => $pengarang,
+    'kategori' => $kategori,
     'tahun' => (int) $tahun,
     'isbn' => $isbn,
     'stok' => (int) $stok,
-    'kategori' => $kategori,
-];
+]);
 
 // 6. Buat pesan sukses dan arahkan pengguna ke halaman Daftar Buku
 $_SESSION['flash'] = [
