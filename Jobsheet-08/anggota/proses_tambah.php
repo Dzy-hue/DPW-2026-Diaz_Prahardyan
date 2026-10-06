@@ -52,22 +52,41 @@ if (!empty($errors)) {
 //     'no_hp' => $no_hp,
 // ];
 
-$stmt = $pdo->prepare(
-    "INSERT INTO anggota (nama, no_anggota, alamat, no_hp) 
-     VALUES (:nama, :no_anggota, :alamat, :no_hp)
-     RETURNING id"
-);
-$stmt->execute([
-    ':nama' => $nama,
-    ':no_anggota' => $noAnggota,
-    ':alamat' => $alamat,
-    ':no_hp' => $noHp
-]);
+try {
+    $stmt = $pdo->prepare(
+        "INSERT INTO anggota (nama, no_anggota, alamat, no_hp) 
+        VALUES (:nama, :no_anggota, :alamat, :no_hp)
+        RETURNING id"
+    );
+    $stmt->execute([
+        ':nama' => $nama,
+        ':no_anggota' => $noAnggota,
+        ':alamat' => $alamat,
+        ':no_hp' => $noHp
+    ]);
 
-// 6. Buat pesan sukses dan arahkan pengguna ke halaman Daftar Buku
-$_SESSION['flash'] = [
-    'type' => 'success', 
-    'pesan' => 'Anggota berhasil ditambahkan.'
-];
-header('Location: list.php');
-exit;
+    // 6. Buat pesan sukses dan arahkan pengguna ke halaman Daftar Buku
+    $_SESSION['flash'] = [
+        'type' => 'success', 
+        'pesan' => 'Anggota berhasil ditambahkan.'
+    ];
+    header('Location: list.php');
+    exit;
+} catch (PDOException $e) {
+    // 23505 adalah kode error untuk unique violation di PostgreSQL
+    if ($e->getCode() === '23505') {
+        $pesan_error = "Nomor Anggota '$noAnggota' sudah digunakan. Silakan gunakan nomor lain.";
+    } else {
+        $pesan_error = "Terjadi kesalahan saat menyimpan data: " . $e->getMessage();
+    }
+    
+    // Kirim pesan error ke session flash (asumsi class CSS-mu menggunakan tipe 'error')
+    $_SESSION['flash'] = [
+        'type' => 'error', 
+        'pesan' => $pesan_error
+    ];
+
+    // Tendang balik pengguna ke halaman form
+    header('Location: tambah.php');
+    exit;
+}
