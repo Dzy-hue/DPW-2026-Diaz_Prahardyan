@@ -143,7 +143,7 @@ td button {
 }
 
 td button:hover { opacity: 0.85; }
-td button.button-edit { background-color: #f0ad4e; color: #fff; }
+td button.btn-edit { background-color: #f0ad4e; color: #fff; }
 td button.btn-detail { background-color: #5bc0de; color: #fff; }
 td button.btn-hapus { background-color: #d9534f; color: #fff; }
 

@@ -34,8 +34,14 @@ if ($keyword !== '') {
                 <?php endif; ?>
 
                 <div class="search-box">
-                    <label for="search-input">Cari Judul Buku</label>
-                    <input type="text" id="search-input" placeholder="Ketik judul buku...">
+                    <form method="GET" action="">
+                        <label for="search-input">Cari Judul Buku</label>
+                        <input type="text" id="search-input" name="q" placeholder="Ketik judul buku lalu tekan Enter..." value="<?php echo htmlspecialchars($keyword); ?>">
+                        
+                        <?php if ($keyword !== ''): ?>
+                            <a href="list.php" style="margin-left: 10px; color: #dc3545; text-decoration: none;">❌ Batal</a>
+                        <?php endif; ?>
+                    </form>
                 </div>
             
                 <div class="table-responsive">
@@ -54,7 +60,7 @@ if ($keyword !== '') {
                     <tbody>
                         <?php if (empty($daftarBuku)): ?>
                         <tr>
-                            <td colspan="5">Belum ada data buku. Silakan tambah lewat menu "Tambah Buku".</td>
+                            <td colspan="7" style="text-align: center;">Belum ada data buku. Silakan tambah lewat menu "Tambah Buku".</td>
                         </tr>
                         <?php else: ?>
                             <?php foreach ($daftarBuku as $buku): ?>
@@ -66,7 +72,7 @@ if ($keyword !== '') {
                                 <td><?php echo $buku['stok']; ?></td>
                                 <td><?php echo date('d M Y, H:i', strtotime($buku['tanggal_ditambahkan'])); ?></td>
                                 <td>
-                                    <button type="button" class="button-edit">Edit</button>
+                                    <a href="edit.php?id=<?php echo $buku['id']; ?>" class="btn-edit">Edit</a>
                                     <button type="button" class="btn-detail">Detail</button>
                                     <button type="button" class="btn-hapus">Hapus</button>
                                 </td>

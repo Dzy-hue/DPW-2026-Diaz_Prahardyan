@@ -32,12 +32,20 @@ if ($keyword !== '') {
                 <?php if ($flash): ?>
                     <p class="flash flash-<?php echo $flash['type']; ?>"><?php echo $flash['pesan']; ?></p>
                 <?php endif; ?>
-
+                
+                // Update Latihan Tambahan 3
                 <div class="search-box">
-                    <label for="search-input">Cari Judul Buku</label>
-                    <input type="text" id="search-input" placeholder="Ketik judul buku...">
+                    <form method="GET" action="">
+                        <label for="search-input">Cari Judul Buku</label>
+                        <input type="text" id="search-input" name="q" placeholder="Ketik judul buku lalu tekan Enter..." value="<?php echo htmlspecialchars($keyword); ?>">
+        
+                        <?php if ($keyword !== ''): ?>
+                            <a href="list.php" style="margin-left: 10px; color: #dc3545; text-decoration: none;">❌ Batal</a>
+                        <?php endif; ?>
+                    </form>
                 </div>
-            
+                // End Update Latihan Tambahan 3
+
                 <div class="table-responsive">
                 <table>
                     <thead>
@@ -54,7 +62,7 @@ if ($keyword !== '') {
                     <tbody>
                         <?php if (empty($daftarBuku)): ?>
                         <tr>
-                            <td colspan="5">Belum ada data buku. Silakan tambah lewat menu "Tambah Buku".</td>
+                            <td colspan="7">Belum ada data buku. Silakan tambah lewat menu "Tambah Buku".</td>
                         </tr>
                         <?php else: ?>
                             <?php foreach ($daftarBuku as $buku): ?>
