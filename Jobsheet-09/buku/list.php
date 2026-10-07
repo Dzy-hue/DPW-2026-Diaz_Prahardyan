@@ -73,8 +73,11 @@ if ($keyword !== '') {
                                 <td><?php echo date('d M Y, H:i', strtotime($buku['tanggal_ditambahkan'])); ?></td>
                                 <td>
                                     <a href="edit.php?id=<?php echo $buku['id']; ?>" class="btn-edit">Edit</a>
-                                    <button type="button" class="btn-detail">Detail</button>
-                                    <button type="button" class="btn-hapus">Hapus</button>
+
+                                    <form class="form-hapus" method="post" action="hapus.php" style="display: inline-block;">
+                                        <input type="hidden" name="id" value="<?php echo $buku['id']; ?>">
+                                        <button type="submit" class="btn-hapus">Hapus</button>
+                                    </form>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

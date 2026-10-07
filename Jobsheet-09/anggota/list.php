@@ -6,7 +6,15 @@ require __DIR__ . '/../includes/koneksi.php';
 $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
 
-$daftarAnggota = $pdo->query("SELECT * FROM anggota ORDER BY id DESC")->fetchAll(PDO::FETCH_ASSOC);
+$keyword = $_GET['q'] ?? '';
+
+if ($keyword !== '') {
+    $stmt = $pdo->prepare("SELECT * FROM anggota WHERE nama ILIKE :keyword ORDER BY id DESC");
+    $stmt->execute(['keyword' => "%$keyword%"]);
+    $daftarAnggota = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} else {
+    $daftarAnggota = $pdo->query("SELECT * FROM anggota ORDER BY id DESC")->fetchAll(PDO::FETCH_ASSOC);
+}
 ?>
             <section>
                 <h2>Daftar Anggota</h2>
@@ -16,8 +24,14 @@ $daftarAnggota = $pdo->query("SELECT * FROM anggota ORDER BY id DESC")->fetchAll
                 <?php endif; ?>
 
                 <div class="search-box">
-                    <label for="search-input">Cari Nama Anggota</label>
-                    <input type="text" id="search-input" placeholder="Ketik nama anggota...">
+                    <form method="GET" action="">
+                        <label for="search-input">Cari Nama Anggota</label>
+                        <input type="text" id="search-input" name="q" placeholder="Ketik nama anggota lalu tekan Enter..." value="<?php echo htmlspecialchars($keyword); ?>">
+                        
+                        <?php if ($keyword !== ''): ?>
+                            <a href="?" style="margin-left: 10px; color: #dc3545; text-decoration: none;">❌ Batal</a>
+                        <?php endif; ?>
+                    </form>
                 </div>
           
                 <div class="table-responsive">
@@ -44,9 +58,12 @@ $daftarAnggota = $pdo->query("SELECT * FROM anggota ORDER BY id DESC")->fetchAll
                             <td><?php echo $anggota['alamat']; ?></td>
                             <td><?php echo $anggota['no_hp']; ?></td>
                             <td>
-                                <button type="button" class="btn-edit">Edit</button>
-                                <button type="button" class="btn-detail">Detail</button>
-                                <button type="button" class="btn-hapus">Hapus</button>
+                                <a href="edit.php?id=<?php echo $anggota['id']; ?>" class="btn-edit">Edit</a>
+
+                                <form class="form-hapus" method="post" action="hapus.php" style="display: inline-block;">
+                                    <input type="hidden" name="id" value="<?php echo $anggota['id']; ?>">
+                                    <button type="submit" class="btn-hapus">Hapus</button>
+                                </form>
                             </td>
                         </tr>
                         <?php endforeach; ?>
