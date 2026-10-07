@@ -33,7 +33,6 @@ if ($keyword !== '') {
                     <p class="flash flash-<?php echo $flash['type']; ?>"><?php echo $flash['pesan']; ?></p>
                 <?php endif; ?>
                 
-                // Update Latihan Tambahan 3
                 <div class="search-box">
                     <form method="GET" action="">
                         <label for="search-input">Cari Judul Buku</label>
@@ -44,7 +43,6 @@ if ($keyword !== '') {
                         <?php endif; ?>
                     </form>
                 </div>
-                // End Update Latihan Tambahan 3
 
                 <div class="table-responsive">
                 <table>
