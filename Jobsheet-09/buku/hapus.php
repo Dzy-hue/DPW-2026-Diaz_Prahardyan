@@ -11,12 +11,12 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $id = $_POST['id'] ?? null;
 if ($id) {
-    $stmt = $pdo->prepare("DELETE FROM buku WHERE id = :id");
+    $stmt = $pdo->prepare("UPDATE buku SET is_active = FALSE WHERE id = :id");
     $stmt->execute(['id' => $id]);
 
     $_SESSION['flash'] = [
         'type' => 'success',
-        'pesan' => "Buku berhasil dihapus."
+        'pesan' => "Buku berhasil dinonaktifkan."
     ];
 }
 header('Location: list.php');

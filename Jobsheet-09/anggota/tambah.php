@@ -23,7 +23,7 @@ unset($_SESSION['flash']);
                       </p>
                       <p>
                         <label for="alamat">Alamat</label>
-                        <input type="text" id="alamat" name="alamat" placeholder="Contoh: Jl. Soekarno Hatta No. 9, Malang" required>
+                        <input type="text" id="alamat" name="alamat" placeholder="Contoh: Malang" required>
                       </p>
                       <p>
                         <label for="no_hp">No. HP</label>
