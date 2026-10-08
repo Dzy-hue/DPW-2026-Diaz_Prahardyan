@@ -18,9 +18,23 @@ function initHapusConfirm() {
         const form = e.target;
         if (!form.classList.contains("form-hapus")) return;
 
-        const row = btn.closest("tr");
+        const row = form.closest("tr");
         const nama = row ? row.querySelector("td")?.textContent : "data ini";
         const yakin = confirm("Yakin ingin menghapus \"" + nama + "\"?");
+        if (!yakin) {
+            e.preventDefault();
+        }
+    });
+}
+
+// fungsi untuk mencegat form edit
+function initEditConfirm() {
+    const formEdit = document.getElementById("form-edit");
+    if (!formEdit) return;
+
+    document.addEventListener("submit", function (e) {
+        const yakin = confirm("Apakah kamu ingin menyimpan perubahan data buku ini?");
+        
         if (!yakin) {
             e.preventDefault();
         }
@@ -60,53 +74,55 @@ function hapusError(input) {
 }
 
 function initValidasiForm() {
-    const form = document.getElementById("form-tambah");
-    if (!form) return;
+    const forms = document.querySelectorAll("#form-tambah, #form-edit");
+    if (forms.length === 0) return;
 
-    form.addEventListener("submit", function (e) {
-        let valid = true;
+    forms.forEach(function(form) {
+        form.addEventListener("submit", function (e) {
+            let valid = true;
 
-        const judul = form.querySelector("[name='judul'], [name='nama']");
-        if (judul && judul.value.trim() === "") {
-            tampilkanError(judul, "Field ini wajib diisi.");
-            valid = false;
-        } else if (judul) {
-            hapusError(judul);
-        }
-
-        const pengarang = form.querySelector("[name='pengarang']");
-        if (pengarang && pengarang.value.trim() === "") {
-            tampilkanError(pengarang, "Pengarang wajib diisi.");
-            valid = false;
-        } else if (pengarang) {
-            hapusError(pengarang);
-        }
-
-        const tahun = form.querySelector("[name='tahun']");
-        if (tahun) {
-            const nilai = parseInt(tahun.value, 10);
-            if (isNaN(nilai) || nilai < 1900 || nilai > 2026) {
-                tampilkanError(tahun, "Tahun harus di antara 1900-2026.");
+            const judul = form.querySelector("[name='judul'], [name='nama']");
+            if (judul && judul.value.trim() === "") {
+                tampilkanError(judul, "Field ini wajib diisi.");
                 valid = false;
-            } else {
-                hapusError(tahun);
+            } else if (judul) {
+                hapusError(judul);
             }
-        }
 
-        const stok = form.querySelector("[name='stok']");
-        if (stok) {
-            const nilai = parseInt(stok.value, 10);
-            if (isNaN(nilai) || nilai < 0) {
-                tampilkanError(stok, "Stok tidak boleh negatif.");
+            const pengarang = form.querySelector("[name='pengarang']");
+            if (pengarang && pengarang.value.trim() === "") {
+                tampilkanError(pengarang, "Pengarang wajib diisi.");
                 valid = false;
-            } else {
-                hapusError(stok);
+            } else if (pengarang) {
+                hapusError(pengarang);
             }
-        }
 
-        if (!valid) {
-            e.preventDefault();
-        }
+            const tahun = form.querySelector("[name='tahun']");
+            if (tahun) {
+                const nilai = parseInt(tahun.value, 10);
+                if (isNaN(nilai) || nilai < 1900 || nilai > 2026) {
+                    tampilkanError(tahun, "Tahun harus di antara 1900-2026.");
+                    valid = false;
+                } else {
+                    hapusError(tahun);
+                }
+            }
+
+            const stok = form.querySelector("[name='stok']");
+            if (stok) {
+                const nilai = parseInt(stok.value, 10);
+                if (isNaN(nilai) || nilai < 0) {
+                    tampilkanError(stok, "Stok tidak boleh negatif.");
+                    valid = false;
+                } else {
+                    hapusError(stok);
+                }
+            }
+
+            if (!valid) {
+                e.preventDefault();
+            }
+        });
     });
 }
 
@@ -115,4 +131,5 @@ document.addEventListener("DOMContentLoaded", function () {
     initHapusConfirm();
     initTableFilter();
     initValidasiForm();
+    initEditConfirm();
 });
