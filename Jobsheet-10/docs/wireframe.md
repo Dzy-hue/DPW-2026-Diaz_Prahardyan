@@ -1,4 +1,4 @@
-# 📚 SIMPUS-mini: UI/UX Design & System Blueprint
+# 📖 SIMPUS-mini: UI/UX Design & System Blueprint
 
 Sub-CPMK: Merancang UI/UX aplikasi (proyek).
 
@@ -35,15 +35,14 @@ Sistem ini memisahkan hak akses ke dalam dua peran utama:
 ## 2. User Flow (Alur Pengguna)
 
 ### A. Registrasi Pengguna Baru
-Alur bagi pengunjung yang belum memiliki akun untuk mendaftar ke dalam sistem perpustakaan, dengan opsi penentuan hak akses.
+Alur bagi pengunjung yang belum memiliki akun untuk mendaftar ke dalam sistem perpustakaan. Hak akses (role) diatur otomatis oleh peladen (*backend*) demi keamanan.
 
-`[Buka Halaman Login]` -> `[Klik "Daftar Anggota Baru"]` -> `[Pilih Peran (Anggota/Petugas)]` -> `[Isi Form Registrasi]` -> `[Klik "Simpan"]` -> `[Sistem Simpan Data]` -> `[Tampil Pesan Sukses & Kembali ke Login]`
+`[Buka Halaman Login]` -> `[Klik "Daftar Akun Baru"]` -> `[Isi Form Registrasi (Nama, Username, Password)]` -> `[Klik "Simpan"]` -> `[Sistem Simpan Data dengan Role Default]` -> `[Tampil Pesan Sukses & Kembali ke Login]`
 
 ### B. Login & Otorisasi
-Sistem validasi terpadu yang memisahkan arah navigasi berdasarkan peran (*role*) yang dipilih pengguna.
+Sistem validasi terpadu. Pengguna cukup memasukkan kredensial, dan sistem akan mengarahkan navigasi secara otomatis berdasarkan peran (*role*) yang terdeteksi di database.
 
-*   **Alur Anggota:** `[Buka Halaman Login]` -> `[Pilih Peran: Anggota]` -> `[Input Kredensial Tamu]` -> `[Sistem Validasi]` -> `[Masuk Dashboard Tamu]` -> `[Bebas Akses Katalog Buku]`
-*   **Alur Petugas:** `[Buka Halaman Login]` -> `[Pilih Peran: Petugas]` -> `[Input Kredensial Petugas]` -> `[Sistem Validasi]` -> `[Masuk Dashboard Petugas]` -> `[Akses Fitur Kelola & Transaksi]`
+`[Buka Halaman Login]` -> `[Input Username & Password]` -> `[Sistem Validasi Kredensial & Cek Role]` -> `[Percabangan Otomatis: Masuk Dashboard Tamu ATAU Dashboard Petugas]`
 
 ### C. Peminjaman Buku (Petugas)
 *Aturan Bisnis Khusus:* Buku hanya dapat dipilih jika stok lebih dari 0.
@@ -53,7 +52,7 @@ Sistem validasi terpadu yang memisahkan arah navigasi berdasarkan peran (*role*)
 ### D. Pengembalian Buku (Petugas)
 *Aturan Bisnis Khusus:* Sistem mencari transaksi yang sudah ada untuk diselesaikan.
 
-`[Dashboard Petugas]` -> `[Menu "Pengembalian"]` -> `[Cari Transaksi Aktif (Anggota/Buku)]` -> `[Klik "Dikembalikan"]` -> `[Sistem Tambah Stok Buku (1)]` -> `[Kembali ke Dashboard]`
+`[Dashboard Petugas]` -> `[Menu "Pengembalian"]` -> `[Cari Transaksi Aktif (Anggota/Buku)]` -> `[Klik "Kembalikan"]` -> `[Sistem Tambah Stok Buku (1)]` -> `[Kembali ke Dashboard]`
 
 ---
 
@@ -62,7 +61,7 @@ Sistem validasi terpadu yang memisahkan arah navigasi berdasarkan peran (*role*)
 *Catatan: Semua rancangan di bawah ini akan ditempatkan di dalam wadah `<main class="container">` dengan kartu `<section class="card shadow-sm">` agar konsisten dengan desain sebelumnya.*
 
 ### A. Form Registrasi Akun Baru
-Halaman pendaftaran pengguna baru yang dilengkapi dengan pilihan hak akses di bagian atas form.
+Halaman pendaftaran pengguna baru. Opsi pemilihan hak akses ditiadakan agar sistem yang menentukan tingkat otorisasi secara aman.
 
 ```text
 ========================================================================
@@ -72,9 +71,6 @@ Halaman pendaftaran pengguna baru yang dilengkapi dengan pilihan hak akses di ba
 |         +--------------------------------------------------+         |
 |         | Pendaftaran Akun Baru                            |         |
 |         | ------------------------------------------------ |         |
-|         |                                                  |         |
-|         | Daftar Sebagai:                                  |         |
-|         | (o) Anggota / Mahasiswa        ( ) Petugas Admin |         |
 |         |                                                  |         |
 |         | Nama Lengkap                                     |         |
 |         | [______________________________________________] |         |
@@ -91,10 +87,12 @@ Halaman pendaftaran pengguna baru yang dilengkapi dengan pilihan hak akses di ba
 |         +--------------------------------------------------+         |
 |                                                                      |
 ========================================================================
+
 ```
 
 ### B. Halaman Login
-Gerbang utama sistem. Form diposisikan di tengah ( center-aligned ).
+
+Gerbang utama sistem. Form diposisikan di tengah (*center-aligned*) dan dirancang cerdas hanya meminta kredensial inti.
 
 ```text
 ========================================================================
@@ -105,9 +103,6 @@ Gerbang utama sistem. Form diposisikan di tengah ( center-aligned ).
 |         | Login Sistem Perpustakaan                        |         |
 |         | ------------------------------------------------ |         |
 |         |                                                  |         |
-|         | Masuk Sebagai:                                   |         |
-|         | (o) Anggota / Mahasiswa        ( ) Petugas Admin |         |
-|         |                                                  |         |
 |         | Username / No. Anggota                           |         |
 |         | [______________________________________________] |         |
 |         |                                                  |         |
@@ -116,18 +111,20 @@ Gerbang utama sistem. Form diposisikan di tengah ( center-aligned ).
 |         |                                                  |         |
 |         |                [ Masuk ke Sistem ]               |         |
 |         |                                                  |         |
-|         | Belum punya akun? [ Daftar Anggota Baru ]        |         |
+|         | Belum punya akun? [ Daftar Akun Baru ]           |         |
 |         +--------------------------------------------------+         |
 |                                                                      |
 ========================================================================
+
 ```
 
 ### C. Dashboard Tamu
+
 Tampilan untuk anggota yang sudah berhasil masuk. Fokus pada ringkasan katalog.
 
 ```text
 ========================================================================
-| SIMPUS-mini                Beranda | Daftar Buku | [Nama Anggota]  ⏏ |
+| SIMPUS-mini                Beranda | Daftar Buku | [Nama Anggota] 🚪 |
 ========================================================================
 |                                                                      |
 |  +----------------------------------------------------------------+  |
@@ -143,14 +140,16 @@ Tampilan untuk anggota yang sudah berhasil masuk. Fokus pada ringkasan katalog.
 |  |  +--------------+ +--------------+ +------------+ +---------+  |  |
 |  +----------------------------------------------------------------+  |
 ========================================================================
+
 ```
 
 ### D. Dashboard Petugas
-Pusat kendali admin dengan tambahan tombol shortcut untuk mempermudah operasional harian.
+
+Pusat kendali admin dengan tambahan tombol *shortcut* untuk mempermudah operasional harian.
 
 ```text
 ========================================================================
-| SIMPUS-mini    Beranda  Dftr.bk  Tbh.bk  Dftr.ag  Tbh.ag | [Admin] ⏏ |
+| SIMPUS-mini    Beranda  Dftr.bk  Tbh.bk  Dftr.ag  Tbh.ag | [Admin] 🚪|
 ========================================================================
 |                                                                      |
 |  +----------------------------------------------------------------+  |
@@ -174,14 +173,16 @@ Pusat kendali admin dengan tambahan tombol shortcut untuk mempermudah operasiona
 |  | [ + Terima Pengembalian Buku ]       [ - Katalog Pengembalian] |  |
 |  +----------------------------------------------------------------+  |
 ========================================================================
+
 ```
 
 ### E. Form Peminjaman
+
 Menggunakan tata letak formulir vertikal standar (label di atas input).
 
 ```text
 ========================================================================
-| SIMPUS-mini    Beranda  Dftr.bk  Tbh.bk  Dftr.ag  Tbh.ag | [Admin] ⏏ |
+| SIMPUS-mini    Beranda  Dftr.bk  Tbh.bk  Dftr.ag  Tbh.ag | [Admin] 🚪|
 ========================================================================
 |                                                                      |
 |  +----------------------------------------------------------------+  |
@@ -199,30 +200,34 @@ Menggunakan tata letak formulir vertikal standar (label di atas input).
 |  | [ Simpan Transaksi ]                                           |  |
 |  +----------------------------------------------------------------+  |
 ========================================================================
+
 ```
 
 ### F. Pengembalian & Riwayat Aktif
-Antarmuka berbasis tabel (*data table*) untuk melacak buku yang sedang berada di tangan anggota, dilengkapi dengan fitur pencarian spesifik.
+
+Antarmuka berbasis tabel (*data table*) untuk melacak buku yang sedang berada di tangan anggota. Dilengkapi dengan fitur pemantauan batas waktu dan tombol penyelesaian transaksi yang jelas.
 
 ```text
-========================================================================
-| SIMPUS-mini    Beranda  Dftr.bk  Tbh.bk  Dftr.ag  Tbh.ag | [Admin] ⏏ |
-========================================================================
-|                                                                      |
-|  +----------------------------------------------------------------+  |
-|  | Transaksi Peminjaman Aktif (Belum Dikembalikan)                |  |
-|  |                                                                |  |
-|  | +------------------------------------------------------------+ |  |
-|  | | No | Peminjam     | Judul Buku       | Tgl Pinjam |  Aksi  | |  |
-|  | |----+--------------+------------------+------------+--------| |  |
-|  | | 1  | Sarah Geiza  | Filosofi Teras   | 08/09/2026 | [Cek]  | |  |
-|  | | 2  | Radian Rafie | 5 cm             | 09/09/2026 | [Cek]  | |  |
-|  | +------------------------------------------------------------+ |  |
-|  +----------------------------------------------------------------+  |
-========================================================================
+=================================================================================
+| SIMPUS-mini             Beranda  Dftr.bk  Tbh.bk  Dftr.ag  Tbh.ag | [Admin] 🚪|
+=================================================================================
+|                                                                               |
+|  +-------------------------------------------------------------------------+  |
+|  | Transaksi Peminjaman Aktif (Belum Dikembalikan)                         |  |
+|  |                                                                         |  |
+|  | +---------------------------------------------------------------------+ |  |
+|  | | No | Peminjam     | Judul Buku   | Tgl Pnjm | Bts Kmbli| Aksi       | |  |
+|  | |----+--------------+--------------+----------+----------+------------| |  |
+|  | | 1  | Sarah Geiza  | Filosofi T...| 08/09/26 | 15/09/26 |[Kembalikan]| |  |
+|  | | 2  | Radian Rafie | 5 cm         | 09/09/26 | 16/09/26 |[Kembalikan]| |  |
+|  | +---------------------------------------------------------------------+ |  |
+|  +-------------------------------------------------------------------------+  |
+=================================================================================
+
 ```
 
 ## Konsistensi dengan Desain yang Sudah Berjalan
-- Warna aksen, tipografi navbar, dan gaya tabel/kartu mengikuti `assets/css/style.css` yang sudah dibangun sejak Jobsheet 2-3.
-- Navbar akan ditambah menu **Peminjaman** dan indikator status login (nama petugas / tombol Logout) mulai implementasi di Jobsheet 10.
-- Edge case yang perlu ditangani saat implementasi: buku stok habis tidak boleh dipilih di form peminjaman; anggota dengan tunggakan terlambat divalidasi di Jobsheet 12 (tugas mandiri).
+
+* Warna aksen, tipografi navbar, dan gaya tabel/kartu mengikuti `assets/css/style.css` yang sudah dibangun sejak Jobsheet 2-3.
+* Navbar akan ditambah menu **Peminjaman** dan indikator status login (nama petugas / tombol Logout) mulai implementasi di Jobsheet 10.
+* Edge case yang perlu ditangani saat implementasi: buku stok habis tidak boleh dipilih di form peminjaman; anggota dengan tunggakan terlambat divalidasi di Jobsheet 12 (tugas mandiri).
