@@ -150,7 +150,7 @@ Pusat kendali admin dengan tambahan tombol shortcut untuk mempermudah operasiona
 
 ```text
 ========================================================================
-| SIMPUS-mini    Beranda  Dftr.bk  Tbh.bk  Dftr.ag  Tbh.bk | [Admin] ⏏ |
+| SIMPUS-mini    Beranda  Dftr.bk  Tbh.bk  Dftr.ag  Tbh.ag | [Admin] ⏏ |
 ========================================================================
 |                                                                      |
 |  +----------------------------------------------------------------+  |
@@ -181,7 +181,7 @@ Menggunakan tata letak formulir vertikal standar (label di atas input).
 
 ```text
 ========================================================================
-| SIMPUS-mini    Beranda  Dftr.bk  Tbh.bk  Dftr.ag  Tbh.bk | [Admin] ⏏ |
+| SIMPUS-mini    Beranda  Dftr.bk  Tbh.bk  Dftr.ag  Tbh.ag | [Admin] ⏏ |
 ========================================================================
 |                                                                      |
 |  +----------------------------------------------------------------+  |
@@ -206,7 +206,7 @@ Antarmuka berbasis tabel (*data table*) untuk melacak buku yang sedang berada di
 
 ```text
 ========================================================================
-| SIMPUS-mini    Beranda  Dftr.bk  Tbh.bk  Dftr.ag  Tbh.bk | [Admin] ⏏ |
+| SIMPUS-mini    Beranda  Dftr.bk  Tbh.bk  Dftr.ag  Tbh.ag | [Admin] ⏏ |
 ========================================================================
 |                                                                      |
 |  +----------------------------------------------------------------+  |
