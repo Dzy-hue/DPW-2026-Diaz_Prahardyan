@@ -130,27 +130,175 @@ tbody tr:hover {
     background-color: #eef4fa;
 }
 
-/* Tombol Tabel */
-td button {
+/* Tombol & Tautan Tabel (Gaya Outline + Hover) */
+/* --- Styling Kotak Pencarian --- */
+.search-box form {
+    margin-bottom: 20px;
+}
+
+.search-box label {
+    display: block; 
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+/* 1. Kotak Input */
+.search-box input[type="text"] {
+    padding: 0 12px;        
+    height: 36px;           
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 280px;
+    font-size: 14px;
+    margin-bottom: 0;
+    box-sizing: border-box; 
+    vertical-align: middle; 
+}
+
+/* 2. Tombol Cari */
+.btn-cari {
+    background-color: transparent; 
+    color: #007bff; 
+    border: 1px solid #007bff;
+    width: 36px;            
+    height: 36px;           
+    padding: 0;   
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px; 
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box; 
+    vertical-align: middle; 
+    margin-left: 5px;       
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-cari:hover {
+    background-color: #007bff; 
+    color: white; 
+}
+
+/* 3. Tombol Batal */
+.btn-batal {
+    background-color: transparent;
+    color: #dc3545;
+    border: 1px solid #dc3545;
+    width: 36px;            
+    height: 36px;           
+    padding: 0; 
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box; 
+    vertical-align: middle; 
+    margin-left: 5px;      
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-batal:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* --- Styling Kotak Aksi --- */
+.btn-edit, 
+.btn-hapus {
     padding: 0.35rem 0.7rem;
     margin-right: 0.35rem;
-    border: none;
+    margin-bottom: 0.35rem;
+    background-color: transparent; 
     border-radius: 6px;
     cursor: pointer;
     font-size: 0.85rem;
     font-weight: 500;
-    transition: opacity 0.2s ease;
+    display: inline-block;
+    text-decoration: none;
+    transition: all 0.25s ease-in-out; 
 }
 
-td button:hover { opacity: 0.85; }
-td button.btn-edit { background-color: #f0ad4e; color: #fff; }
-td button.btn-detail { background-color: #5bc0de; color: #fff; }
-td button.btn-hapus { background-color: #d9534f; color: #fff; }
+/* 1. Tombol Edit (Kuning/Oranye) */ 
+.btn-edit { 
+    color: #f0ad4e; 
+    border: 1px solid #f0ad4e; 
+}
+
+.btn-edit:hover { 
+    background-color: #f0ad4e; 
+    color: #ffffff; 
+    box-shadow: 0 4px 8px rgba(240, 173, 78, 0.3); 
+}
+
+/* 2. Tombol Hapus (Merah) */
+.btn-hapus { 
+    color: #d9534f; 
+    border: 1px solid #d9534f; 
+}
+
+.btn-hapus:hover { 
+    background-color: #d9534f; 
+    color: #ffffff; 
+    box-shadow: 0 4px 8px rgba(217, 83, 79, 0.3); 
+}
+
+/* Pengaturan dasar untuk kedua tombol pada proses edit */
+.btn-simpan-perubahan, .btn-batal-perubahan {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1rem;
+    font-family: inherit;
+    line-height: 1.5;
+    box-sizing: border-box;
+    vertical-align: middle;
+    transition: all 0.25s ease-in-out; 
+}
+
+.btn-simpan-perubahan {
+    color: #007bff;
+    border: 1px solid #007bff;
+}
+
+.btn-simpan-perubahan:hover {
+    background-color: #007bff;
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2); 
+}
+
+.btn-batal-perubahan {
+    color: #dc3545;
+    border: 1px solid #dc3545;
+    margin-left: 10px;
+}
+
+.btn-batal-perubahan:hover {
+    background-color: #dc3545;
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.2); 
+}
 
 /* Form (Lebar maksimal default di HP) */
-form p { margin-bottom: 0.6rem; }
-form label { display: block; margin-bottom: 0; font-weight: 600; color: #444; }
-    
+form p { 
+    margin-bottom: 0.6rem;
+}
+
+form label { 
+    display: block; 
+    margin-bottom: 0.35rem; 
+    font-weight: 600; 
+    color: #444; 
+}
+
 form input,
 form select {
     width: 100%;
@@ -209,37 +357,6 @@ footer {
     color: #d9534f;
     font-size: 0.85rem;
     margin-top: 0.25rem;
-}
-
-/* ===== Kolom Pencarian ===== */
-.search-box {
-    margin-bottom: 1rem;
-}
-
-.search-box input {
-    width: 100%;
-    max-width: 320px;
-    padding: 0.5rem 0.75rem;
-    border: 1px solid #cdd4da;
-    border-radius: 4px;
-}
-
-#btn-reload {
-    background-color: #ffffff;
-    color: #0b3d1f;
-    border: 1.5px solid #0b3d1f;
-    border-radius: 6px;
-    padding: 7px 15px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    margin-bottom: 15px;
-}
-
-#btn-reload:hover {
-    background-color: #0b3d1f;
-    color: #ffffff;
 }
 
 /* =========================================================
