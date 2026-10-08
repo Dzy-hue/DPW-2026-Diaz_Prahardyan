@@ -15,11 +15,11 @@ $offset = ($page - 1) * $perPage;
 $keyword = trim($_GET['q'] ?? '');
 
 if ($keyword !== '') {
-    $hitung = $pdo->prepare("SELECT COUNT(*) FROM buku WHERE judul ILIKE :kw");
+    $hitung = $pdo->prepare("SELECT COUNT(*) FROM buku WHERE judul ILIKE :kw OR pengarang ILIKE :kw");
     $hitung->execute(['kw' => '%' . $keyword . '%']);
     $totalRows = $hitung->fetchColumn();
 
-    $stmt = $pdo->prepare("SELECT * FROM buku WHERE judul ILIKE :kw ORDER BY id DESC LIMIT :limit OFFSET :offset");
+    $stmt = $pdo->prepare("SELECT * FROM buku WHERE judul ILIKE :kw OR pengarang ILIKE :kw ORDER BY id DESC LIMIT :limit OFFSET :offset");
     $stmt->bindValue('kw', '%' . $keyword . '%');
 } else {
     $totalRows = $pdo->query("SELECT COUNT(*) FROM buku")->fetchColumn();
@@ -41,8 +41,8 @@ $totalPages = max(1, (int) ceil($totalRows / $perPage));
 
                 <div class="search-box">
                     <form method="GET" action="list.php">
-                        <label for="search-input">Cari Judul Buku</label>
-                        <input type="text" id="search-input" name="q" placeholder="Ketik judul buku lalu tekan Enter..." value="<?php echo htmlspecialchars($keyword); ?>">
+                        <label for="search-input">Cari Judul Buku atau Pengarang</label>
+                        <input type="text" id="search-input" name="q" placeholder="Ketik judul buku atau pengarang......" value="<?php echo htmlspecialchars($keyword); ?>">
 
                         <button type="submit" class="btn-cari">🔎︎</button>
 
