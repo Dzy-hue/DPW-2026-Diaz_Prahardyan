@@ -1,0 +1,6 @@
+![Membuat data buku yang ingin diuji](<Screenshot 2026-10-08 185027.png>)
+![Cek data berhasil ditampilkan di website](<Screenshot 2026-10-08 185035.png>)
+![Cek atribut is_active = true (t) di database lewat terminal laragon](<Screenshot 2026-10-08 185102.png>)
+![Mencoba menguji fitur hapus/nonaktifkan via web](<Screenshot 2026-10-08 185116.png>)
+![Cek buku sudah tidak ada di tabel pada web](<Screenshot 2026-10-08 185905.png>)
+![Hasil Final: Terlihat yang tadinya nilai t (true) pada kolom is_active menjadi f. Kesimpulan: Pengujian berhasil.](<Screenshot 2026-10-08 185938.png>)
