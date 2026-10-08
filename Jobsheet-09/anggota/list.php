@@ -6,15 +6,28 @@ require __DIR__ . '/../includes/koneksi.php';
 $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
 
-$keyword = $_GET['q'] ?? '';
+$perPage = 5;
+$page = max(1, (int) ($_GET['page'] ?? 1));
+$offset = ($page - 1) * $perPage;
+$keyword = trim($_GET['q'] ?? '');
 
 if ($keyword !== '') {
-    $stmt = $pdo->prepare("SELECT * FROM anggota WHERE nama ILIKE :keyword ORDER BY id DESC");
-    $stmt->execute(['keyword' => "%$keyword%"]);
-    $daftarAnggota = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $hitung = $pdo->prepare("SELECT COUNT(*) FROM anggota WHERE nama ILIKE :kw");
+    $hitung->execute(['kw' => '%' . $keyword . '%']);
+    $totalRows = $hitung->fetchColumn();
+
+    $stmt = $pdo->prepare("SELECT * FROM anggota WHERE nama ILIKE :kw ORDER BY id DESC LIMIT :limit OFFSET :offset");
+    $stmt->bindValue('kw', '%' . $keyword . '%');
 } else {
-    $daftarAnggota = $pdo->query("SELECT * FROM anggota ORDER BY id DESC")->fetchAll(PDO::FETCH_ASSOC);
+    $totalRows = $pdo->query("SELECT COUNT(*) FROM anggota")->fetchColumn();
+    $stmt = $pdo->prepare("SELECT * FROM anggota ORDER BY id DESC LIMIT :limit OFFSET :offset");
 }
+$stmt->bindValue('limit', $perPage, PDO::PARAM_INT);
+$stmt->bindValue('offset', $offset, PDO::PARAM_INT);
+$stmt->execute();
+
+$daftarAnggota = $stmt->fetchALL(PDO::FETCH_ASSOC);
+$totalPages = max(1, (int) ceil($totalRows / $perPage));
 ?>
             <section>
                 <h2>Daftar Anggota</h2>
@@ -24,12 +37,14 @@ if ($keyword !== '') {
                 <?php endif; ?>
 
                 <div class="search-box">
-                    <form method="GET" action="">
+                    <form method="GET" action="list.php">
                         <label for="search-input">Cari Nama Anggota</label>
                         <input type="text" id="search-input" name="q" placeholder="Ketik nama anggota lalu tekan Enter..." value="<?php echo htmlspecialchars($keyword); ?>">
                         
+                        <button type="submit" class="btn-cari">🔎︎</button>
+
                         <?php if ($keyword !== ''): ?>
-                            <a href="?" style="margin-left: 10px; color: #dc3545; text-decoration: none;">❌ Batal</a>
+                            <a href="list.php" class="btn-batal">❌</a>
                         <?php endif; ?>
                     </form>
                 </div>
@@ -71,5 +86,14 @@ if ($keyword !== '') {
                     </tbody>
                 </table>
                 </div>
+
+                <nav class="pagination" style="margin-top: 15px; display: flex; gap: 5px;">
+                    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                        <a href="list.php?page=<?php echo $i; ?><?php echo $keyword !== '' ? '&q=' . urlencode($keyword) : ''; ?>"
+                        style="padding: 5px 10px; border: 1px solid #ccc; text-decoration: none; color: #333; <?php echo $i === $page ? 'background-color: #007bff; color: white;' : ''; ?>">
+                        <?php echo $i; ?>
+                        </a>
+                    <?php endfor; ?>
+                </nav>
             </section>
 <?php include __DIR__ . '/../includes/footer.php'; ?>
