@@ -22,12 +22,24 @@ if ($username === '' || $password === '') {
     exit;
 }
 
+if (isset($_SESSION['lockout_time']) && time() < $_SESSION['lockout_time']) {
+    $sisa = $_SESSION['lockout_time'] - time();
+    $_SESSION['flash'] = [
+        'type' => 'error',
+        'pesan' => "Terlalu banyak percobaan. Silakan tunggu $sisa detik."
+    ];
+    header('Location: login.php');
+    exit;
+}
+
 try {
     $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username");
     $stmt->execute(['username' => $username]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user && password_verify($password, $user['password'])) {
+        unset($_SESSION['login_attempts']); 
+        unset($_SESSION['lockout_time']);
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['nama']    = $user['nama'];
         $_SESSION['role']    = $user['role']; 
@@ -37,7 +49,7 @@ try {
             setcookie('simpus_token', $user['username'], time() + (86400 * 30), "/"); 
         }
         
-        // 4. Percabangan otomatis berdasarkan peran (Sesuai Wireframe)
+        // Percabangan otomatis berdasarkan peran (Sesuai Wireframe)
         if ($user['role'] === 'petugas' || $user['role'] === 'admin') {
             // Petugas diarahkan ke Dasbor Admin 
             header('Location: ../dashboard_petugas.php'); 
@@ -47,6 +59,13 @@ try {
         }
         exit;
     } else {
+        $_SESSION['login_attempts'] = ($_SESSION['login_attempts'] ?? 0) + 1;
+        
+        // Jika sudah gagal 5 kali, kunci selama 60 detik (1 menit)
+        if ($_SESSION['login_attempts'] >= 5) {
+            $_SESSION['lockout_time'] = time() + 60;
+        }
+
         $_SESSION['flash'] = [
             'type' => 'error',
             'pesan' => 'Username atau password salah.'
