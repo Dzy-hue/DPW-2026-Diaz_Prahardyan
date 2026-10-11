@@ -14,15 +14,12 @@ $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
 ?>
         <section>
-            <header>
-                <h2>Pendaftaran Akun Baru</h2>
-            </header>
+            <h2 class="judul-form">Pendaftaran Akun Baru</h2>
                 
             <article>
                 <?php if ($flash): ?>
                         <p class="flash flash-<?php echo $flash['type']; ?>"><?php echo $flash['pesan']; ?></p>
                 <?php endif; ?>
-
 
                 <form action="proses_register.php" method="POST">
                     <p>

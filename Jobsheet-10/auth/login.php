@@ -20,9 +20,7 @@ $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
 ?>
         <section>
-            <header>
-                <h2>Login SiMPUS-Mini</h2>
-            </header>
+            <h2 class="judul-form">Login SiMPUS-Mini</h2>
 
             <article>
                 <?php if ($flash): ?>
