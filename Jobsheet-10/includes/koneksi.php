@@ -1,9 +1,9 @@
 <?php
-$host = getenv('PGHOST') ?: 'localhost';
-$port = getenv('PGPORT') ?: '5434';
-$db = getenv('PGDATABASE') ?: 'simpus_mini';
-$user = getenv('PGUSER') ?: 'postgres';
-$pass = getenv('PGPASSWORD') ?: 'postgres';
+$host = $_SERVER['PGHOST'] ?? $_ENV['PGHOST'] ?? getenv('PGHOST') ?: 'localhost';
+$port = $_SERVER['PGPORT'] ?? $_ENV['PGPORT'] ?? getenv('PGPORT') ?: '5434';
+$db   = $_SERVER['PGDATABASE'] ?? $_ENV['PGDATABASE'] ?? getenv('PGDATABASE') ?: 'simpus_mini';
+$user = $_SERVER['PGUSER'] ?? $_ENV['PGUSER'] ?? getenv('PGUSER') ?: 'postgres';
+$pass = $_SERVER['PGPASSWORD'] ?? $_ENV['PGPASSWORD'] ?? getenv('PGPASSWORD') ?: 'postgres';
 
 try {
     $dsn = "pgsql:host=$host;port=$port;dbname=$db";
