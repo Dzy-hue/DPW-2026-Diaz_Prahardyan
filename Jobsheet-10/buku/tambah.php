@@ -1,4 +1,8 @@
 <?php
+
+require_once __DIR__ . '/../includes/auth.php';
+wajib_petugas();
+
 $page_title = "Tambah Buku";
 include __DIR__ . '/../includes/header.php';
 
