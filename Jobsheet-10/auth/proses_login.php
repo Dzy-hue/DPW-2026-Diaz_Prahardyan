@@ -31,6 +31,11 @@ try {
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['nama']    = $user['nama'];
         $_SESSION['role']    = $user['role']; 
+
+        if (isset($_POST['remember']) && $_POST['remember'] === '1') {
+            // Membuat cookie bernama 'simpus_token' yang bertahan 30 hari (86400 detik * 30)
+            setcookie('simpus_token', $user['username'], time() + (86400 * 30), "/"); 
+        }
         
         // 4. Percabangan otomatis berdasarkan peran (Sesuai Wireframe)
         if ($user['role'] === 'petugas' || $user['role'] === 'admin') {
