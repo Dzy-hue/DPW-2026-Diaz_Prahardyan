@@ -71,7 +71,7 @@ $is_admin = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
                     <tbody>
                         <?php if (empty($daftarAnggota)): ?>
                         <tr>
-                            <td colspan="<?php echo ($is_petugas || $is_admin) ? '5' : '4'; ?>">Belum ada data anggota. Silakan tambah lewat menu "Tambah Anggota".</td>
+                            <td colspan="<?php echo ($is_petugas || $is_admin) ? '5' : '4'?>" style="text-align: center;">Belum ada data anggota. Silakan tambah lewat menu "Tambah Anggota".</td>
                         </tr>
                     <?php else: ?>
                         <?php foreach ($daftarAnggota as $anggota): ?>
@@ -80,16 +80,16 @@ $is_admin = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
                             <td><?php echo $anggota['nama']; ?></td>
                             <td><?php echo $anggota['alamat']; ?></td>
                             <td><?php echo $anggota['no_hp']; ?></td>
-                            <td>
-                                <?php if ($is_admin): ?>
+                            <?php if ($is_admin): ?>
+                                <td>
                                     <a href="edit.php?id=<?php echo $anggota['id']; ?>" class="btn-edit">Edit</a>
 
                                     <form class="form-hapus" method="post" action="hapus.php" style="display: inline-block;">
                                         <input type="hidden" name="id" value="<?php echo $anggota['id']; ?>">
                                         <button type="submit" class="btn-hapus">Hapus</button>
                                     </form>
-                                <?php endif; ?>
-                            </td>
+                                </td>
+                            <?php endif; ?>
                         </tr>
                         <?php endforeach; ?>
                     <?php endif; ?>

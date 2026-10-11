@@ -471,38 +471,100 @@ footer {
 }
 
 /* Penyesuaian Flexbox untuk Auth Status */
+/* =========================================================
+   PERBAIKAN TATA LETAK NAVBAR & TOMBOL (PROFIL & LOGOUT)
+   ========================================================= */
+
+/* Mengatur jarak antara Nama dan tombol Logout */
 .auth-status {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1.25rem !important; /* Jarak antar elemen lebih lega */
 }
 
 .nav-greeting {
     color: #f0ad4e;
     font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.3px;
 }
 
+/* Menyulap teks Logout menjadi tombol "outline" (garis luar) tipis */
 .nav-logout {
-    color: #ffcccc;
-    font-size: 0.9rem;
-    text-decoration: underline;
+    color: #ffcccc !important;
+    font-size: 0.85rem;
+    text-decoration: none !important;
+    border: 1px solid #ffcccc; /* Beri bingkai merah muda pudar */
+    padding: 0.35rem 0.9rem;
+    border-radius: 50px; /* Bentuk pil */
+    font-weight: 500;
+    transition: all 0.3s ease;
 }
 
+/* Efek saat kursor menyentuh tombol Logout */
 .nav-logout:hover {
-    color: #ff9999;
+    background-color: #ffcccc !important;
+    color: #003512 !important; /* Teks berubah hijau gelap agar kontras */
+    box-shadow: 0 2px 8px rgba(255, 204, 204, 0.4);
 }
 
-.nav-btn-login {
-    background-color: #ffffff;
-    color: #003512;
-    padding: 0.35rem 1rem;
-    margin-left: 1rem;
+/* =========================================================
+   GAYA TOMBOL MENU PINTASAN (DASHBOARD)
+   ========================================================= */
+
+/* Kontainer agar tombol-tombol berjajar rapi dan berjarak */
+.shortcut-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap; /* Jika layar HP sempit, tombol otomatis turun ke bawah */
+}
+
+/* Tombol gaya kedua (Outline/Garis Luar) untuk membedakan prioritas */
+.btn-outline {
+    background-color: transparent;
+    color: #0c3b19;
+    border: 2px solid #0c3b19;
+    padding: 0.65rem 1.5rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
     text-decoration: none;
-    border-radius: 6px;
+    transition: all 0.25s ease;
+    display: inline-block;
 }
 
+.btn-outline:hover {
+    background-color: #0c3b19;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(12, 59, 25, 0.2);
+}
+
+/* Gaya Tombol Login Di Navbar */
+.nav-btn-login {
+    background-color: #ffffff; 
+    color: #003512; 
+    padding: 0.45rem 1.25rem; 
+    margin-left: 1rem;
+    font-weight: 600; 
+    font-size: 0.95rem;
+    text-decoration: none;
+    border-radius: 50px; 
+    border: 2px solid #ffffff; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+    transition: all 0.3s ease; 
+    display: inline-block;
+}
+
+/* Efek saat kursor menyentuh tombol Login */
 .nav-btn-login:hover {
-    background-color: #e2e6ea; 
+    background-color: #f0ad4e; 
+    color: #ffffff; 
+    border-color: #f0ad4e;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); 
+    transform: translateY(-2px); 
 }
 
 /* Styling khusus untuk judul form Login & Register */
@@ -511,4 +573,34 @@ footer {
     color: #003512;
     margin-bottom: 1.5rem;
     font-size: 1.6rem;
+}
+
+/* Gaya khusus halaman Login & Register */
+.auth-container {
+    max-width: 450px;
+    margin: 4rem auto;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 10px 25px rgba(0, 53, 18, 0.1);
+    border-radius: 12px;
+}
+
+.auth-container input {
+    max-width: 100%; 
+}
+
+.auth-container .btn-simpan {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.85rem;
+    font-size: 1rem;
+}
+
+.auth-container article > p:last-child {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.auth-container article > p:last-child a {
+    color: #007bff;
+    font-weight: 600;
 }

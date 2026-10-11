@@ -43,11 +43,11 @@ $totalAnggota = $pdo->query("SELECT COUNT(*) FROM anggota WHERE is_active = TRUE
             
         <section>
             <h3>Menu Pintasan Petugas</h3>
-            <p style="margin-top: 1rem;">
-                <!-- Tautan ini sementara diarahkan ke index/tambah.php yang sudah ada -->
-                <a href="buku/tambah.php" class="btn-simpan" style="display: inline-block; text-decoration: none;">Tambah Data Buku</a>
-                <a href="anggota/tambah.php" class="btn-simpan" style="display: inline-block; text-decoration: none;">Tambah Data Anggota</a>
-            </p>
+                <div class="shortcut-buttons">
+                    <!-- Tautan sementara diarahkan ke index/tambah.php yang sudah ada -->
+                    <a href="buku/tambah.php" class="btn-outline">Tambah Data Buku</a>
+                    <a href="anggota/tambah.php" class="btn-outline">Tambah Data Anggota</a>
+                </div>
         </section>
     </article>
 <?php include __DIR__ . '/includes/footer.php'; ?>

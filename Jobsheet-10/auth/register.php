@@ -13,7 +13,7 @@ include __DIR__ . '/../includes/header.php';
 $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
 ?>
-        <section>
+        <section class="auth-container">
             <h2 class="judul-form">Pendaftaran Akun Baru</h2>
                 
             <article>
