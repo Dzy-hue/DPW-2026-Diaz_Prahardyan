@@ -22,14 +22,6 @@ $totalAnggota = $pdo->query("SELECT COUNT(*) FROM anggota WHERE is_active = TRUE
                     <h3>Total Anggota</h3>
                     <p><?php echo $totalAnggota; ?></p>
                 </article>
-                <article class="stat-card">
-                    <h3>Sedang Dipinjam</h3>
-                    <p>14</p>
-                </article>
-                <article class="stat-card">
-                    <h3>Buku Terlambat</h3>
-                    <p>56</p>
-                </article>
             </div>
         </section>
 
