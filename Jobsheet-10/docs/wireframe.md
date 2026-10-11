@@ -28,7 +28,8 @@ Rancangan visual dalam dokumen ini mengadopsi sistem desain yang sudah berjalan,
 ## 1. Definisi Aktor
 Sistem ini memisahkan hak akses ke dalam dua peran utama:
 *   **Tamu / Anggota:** Pengguna biasa yang hanya dapat melihat katalog buku dan dasbor pribadi setelah *login*.
-*   **Petugas (Admin):** Pengelola perpustakaan yang memiliki akses penuh untuk mengelola data master (buku/anggota) serta melakukan transaksi peminjaman dan pengembalian.
+*   **Petugas:** Pengelola perpustakaan yang memiliki akses penuh (kecuali hapus & edit anggota) untuk mengelola data master (buku/anggota) serta melakukan transaksi peminjaman dan pengembalian.
+*   **Petugas:** Admin perpustakaan yang memiliki akses penuh untuk mengelola data master (buku/anggota) serta melakukan transaksi peminjaman dan pengembalian.
 
 ---
 
@@ -65,11 +66,11 @@ Halaman pendaftaran pengguna baru. Opsi pemilihan hak akses ditiadakan agar sist
 
 ```text
 ========================================================================
-| SIMPUS-mini                                        Beranda | Login   |
+| SIMPUS-mini                                                    Login |
 ========================================================================
 |                                                                      |
 |         +--------------------------------------------------+         |
-|         | Pendaftaran Akun Baru                            |         |
+|         |               Pendaftaran Akun Baru              |         |
 |         | ------------------------------------------------ |         |
 |         |                                                  |         |
 |         | Nama Lengkap                                     |         |
@@ -96,11 +97,11 @@ Gerbang utama sistem. Form diposisikan di tengah (*center-aligned*) dan dirancan
 
 ```text
 ========================================================================
-| SIMPUS-mini                                        Beranda | Login   |
+| SIMPUS-mini                                                    Login |
 ========================================================================
 |                                                                      |
 |         +--------------------------------------------------+         |
-|         | Login Sistem Perpustakaan                        |         |
+|         |                Login SIMPUS-Mini                 |         |
 |         | ------------------------------------------------ |         |
 |         |                                                  |         |
 |         | Username / No. Anggota                           |         |
@@ -118,59 +119,65 @@ Gerbang utama sistem. Form diposisikan di tengah (*center-aligned*) dan dirancan
 
 ```
 
-### C. Dashboard Tamu
+### C. Dashboard Anggota
 
 Tampilan untuk anggota yang sudah berhasil masuk. Fokus pada ringkasan katalog.
 
 ```text
 ========================================================================
-| SIMPUS-mini                Beranda | Daftar Buku | [Nama Anggota] 🚪 |
+| SIMPUS-mini    Beranda Daftar Buku.. Daftar Anggota..  [Nama] Logout |
 ========================================================================
 |                                                                      |
 |  +----------------------------------------------------------------+  |
-|  | Selamat Datang di Perpustakaan!                                |  |
-|  | Jelajahi ratusan koleksi buku terbaru kami hari ini.           |  |
+|  | Selamat Datang di Sistem Perpustakaan Mini                     |  |
+|  | Aplikasi pengelolaan data koleksi buku dan keanggotaan         |  |
+|  | perpustakaan terpadu.                                          |  |
 |  +----------------------------------------------------------------+  |
 |                                                                      |
 |  +----------------------------------------------------------------+  |
-|  | Ringkasan Katalog                                              |  |
-|  |  +--------------+ +--------------+ +------------+ +---------+  |  |
-|  |  |  Total Buku  | | Total Angg.  | |  Dipinjam  | |  Telat  |  |  |
-|  |  |     108      | |      30      | |     14     | |   56    |  |  |
-|  |  +--------------+ +--------------+ +------------+ +---------+  |  |
+|  | Ringkasan                                                      |  |
+|  |  +-----------------------------+ +--------------------------+  |  |
+|  |  |          Total Buku         | |      Total Anggota       |  |  |
+|  |  |              108            | |           30             |  |  |
+|  |  +-----------------------------+ +--------------------------+  |  |
 |  +----------------------------------------------------------------+  |
 ========================================================================
 
 ```
 
-### D. Dashboard Petugas
+### D. Dashboard Petugas/Admin
 
 Pusat kendali admin dengan tambahan tombol *shortcut* untuk mempermudah operasional harian.
 
 ```text
 ========================================================================
-| SIMPUS-mini    Beranda  Dftr.bk  Tbh.bk  Dftr.ag  Tbh.ag | [Admin] 🚪|
+| SIMPUS-mini    Beranda Daftar Buku.. Daftar Anggota..  [Nama] Logout |
 ========================================================================
 |                                                                      |
 |  +----------------------------------------------------------------+  |
-|  | Selamat Datang di Sistem Perpustakaan mini                     |  |
-|  | Aplikasi untuk mengelola koleksi buku dan anggota perpustakaan.|  |
-|  +----------------------------------------------------------------+  |
-|                                                                      |
-|  +----------------------------------------------------------------+  |
-|  | Dashboard Petugas                                              |  |
+|  | Dashboard Admin Perpustakaan                                   |  | 
+|  |                                                                |  | 
+|  | Selamat datang kembali, Diaz Prahardyan! Anda masuk sebagai    |  |
+|  | Petugas/Admin.                                                 |  |
 |  |                                                                |  |
-|  |  +--------------+ +--------------+ +------------+ +---------+  |  |
-|  |  |  Total Buku  | |  Total Angg. | |  Dipinjam  | |  Telat  |  |  |
-|  |  |     108      | |      30      | |     14     | |   56    |  |  |
-|  |  +--------------+ +--------------+ +------------+ +---------+  |  |
+|  | Ini adalah pusat kendali utama. Dari sini.........             |  |
+|  |                                                                |  |
+|  | Ringkasan                                                      |  |
+|  |  +-----------------------------+ +--------------------------+  |  |
+|  |  |          Total Buku         | |      Total Anggota       |  |  |
+|  |  |              108            | |           30             |  |  |
+|  |  +-----------------------------+ +--------------------------+  |  |
+|  |  +-----------------------------+ +--------------------------+  |  |
+|  |  |        Sedang Dipinjam      | |      Buku Terlambat      |  |  |
+|  |  |               14            | |           56             |  |  |
+|  |  +-----------------------------+ +--------------------------+  |  |
 |  +----------------------------------------------------------------+  |
 |                                                                      |
 |  +----------------------------------------------------------------+  |
 |  |                Menu Utama Admin & Daftar Riwayat               |  |
 |  |                                                                |  |
 |  |   [ + Buat Peminjaman Baru ]          [ - Katalog Peminjaman]  |  |
-|  | [ + Terima Pengembalian Buku ]       [ - Katalog Pengembalian] |  |
+|  | [ + Terima Pengembalian Buku ]       [ - Katalog Pengembalian] |  |                                       
 |  +----------------------------------------------------------------+  |
 ========================================================================
 
@@ -182,7 +189,7 @@ Menggunakan tata letak formulir vertikal standar (label di atas input).
 
 ```text
 ========================================================================
-| SIMPUS-mini    Beranda  Dftr.bk  Tbh.bk  Dftr.ag  Tbh.ag | [Admin] 🚪|
+| SIMPUS-mini    Beranda Daftar Buku.. Daftar Anggota..  [Nama] Logout |
 ========================================================================
 |                                                                      |
 |  +----------------------------------------------------------------+  |
@@ -208,21 +215,21 @@ Menggunakan tata letak formulir vertikal standar (label di atas input).
 Antarmuka berbasis tabel (*data table*) untuk melacak buku yang sedang berada di tangan anggota. Dilengkapi dengan fitur pemantauan batas waktu dan tombol penyelesaian transaksi yang jelas.
 
 ```text
-=================================================================================
-| SIMPUS-mini             Beranda  Dftr.bk  Tbh.bk  Dftr.ag  Tbh.ag | [Admin] 🚪|
-=================================================================================
-|                                                                               |
-|  +-------------------------------------------------------------------------+  |
-|  | Transaksi Peminjaman Aktif (Belum Dikembalikan)                         |  |
-|  |                                                                         |  |
-|  | +---------------------------------------------------------------------+ |  |
-|  | | No | Peminjam     | Judul Buku   | Tgl Pnjm | Bts Kmbli| Aksi       | |  |
-|  | |----+--------------+--------------+----------+----------+------------| |  |
-|  | | 1  | Sarah Geiza  | Filosofi T...| 08/09/26 | 15/09/26 |[Kembalikan]| |  |
-|  | | 2  | Radian Rafie | 5 cm         | 09/09/26 | 16/09/26 |[Kembalikan]| |  |
-|  | +---------------------------------------------------------------------+ |  |
-|  +-------------------------------------------------------------------------+  |
-=================================================================================
+===========================================================================================
+| SIMPUS-mini            Beranda Daftar Buku.. Daftar Anggota..             [Nama] Logout |
+===========================================================================================
+|                                                                                         |
+|  +-----------------------------------------------------------------------------------+  |
+|  | Transaksi Peminjaman Aktif (Belum Dikembalikan)                                   |  |
+|  |                                                                                   |  |
+|  | +-------------------------------------------------------------------------------+ |  |
+|  | | No | Peminjam     | Judul Buku   | Tanggal Pinjam | Batas Kembali| Aksi       | |  |
+|  | |----+--------------+--------------+----------------+--------------+------------| |  |
+|  | | 1  | Sarah Geiza  | Filosofi T...| 08/09/26       | 15/09/26     |[Kembalikan]| |  |
+|  | | 2  | Radian Rafie | 5 cm         | 09/09/26       | 16/09/26     |[Kembalikan]| |  |
+|  | +-------------------------------------------------------------------------------+ |  |
+|  +-----------------------------------------------------------------------------------+  |
+===========================================================================================
 
 ```
 
