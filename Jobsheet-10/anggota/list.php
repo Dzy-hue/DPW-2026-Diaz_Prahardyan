@@ -32,6 +32,8 @@ $stmt->execute();
 
 $daftarAnggota = $stmt->fetchALL(PDO::FETCH_ASSOC);
 $totalPages = max(1, (int) ceil($totalRows / $perPage));
+
+$is_admin = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
 ?>
             <section>
                 <h2>Daftar Anggota</h2>
@@ -61,13 +63,15 @@ $totalPages = max(1, (int) ceil($totalRows / $perPage));
                             <th>Nama</th>
                             <th>Alamat</th>
                             <th>No. HP</th>
-                            <th>Aksi</th>
+                            <?php if ($is_admin): ?>
+                                <th>Aksi</th>
+                            <?php endif; ?>
                         </tr>
                     </thead>
                     <tbody>
                         <?php if (empty($daftarAnggota)): ?>
                         <tr>
-                            <td colspan="5">Belum ada data anggota. Silakan tambah lewat menu "Tambah Anggota".</td>
+                            <td colspan="<?php echo ($is_petugas || $is_admin) ? '5' : '4'; ?>">Belum ada data anggota. Silakan tambah lewat menu "Tambah Anggota".</td>
                         </tr>
                     <?php else: ?>
                         <?php foreach ($daftarAnggota as $anggota): ?>
@@ -77,12 +81,14 @@ $totalPages = max(1, (int) ceil($totalRows / $perPage));
                             <td><?php echo $anggota['alamat']; ?></td>
                             <td><?php echo $anggota['no_hp']; ?></td>
                             <td>
-                                <a href="edit.php?id=<?php echo $anggota['id']; ?>" class="btn-edit">Edit</a>
+                                <?php if ($is_admin): ?>
+                                    <a href="edit.php?id=<?php echo $anggota['id']; ?>" class="btn-edit">Edit</a>
 
-                                <form class="form-hapus" method="post" action="hapus.php" style="display: inline-block;">
-                                    <input type="hidden" name="id" value="<?php echo $anggota['id']; ?>">
-                                    <button type="submit" class="btn-hapus">Hapus</button>
-                                </form>
+                                    <form class="form-hapus" method="post" action="hapus.php" style="display: inline-block;">
+                                        <input type="hidden" name="id" value="<?php echo $anggota['id']; ?>">
+                                        <button type="submit" class="btn-hapus">Hapus</button>
+                                    </form>
+                                <?php endif; ?>
                             </td>
                         </tr>
                         <?php endforeach; ?>

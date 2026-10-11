@@ -15,10 +15,10 @@ $totalAnggota = $pdo->query("SELECT COUNT(*) FROM anggota WHERE is_active = TRUE
         <section>
             <h2>Dashboard Admin Perpustakaan</h2>
             <p class="flash flash-success">
-                Selamat datang kembali, <strong><?php echo htmlspecialchars($_SESSION['nama']); ?></strong>! Anda masuk sebagai Petugas.
+                Selamat datang kembali, <strong><?php echo htmlspecialchars($_SESSION['nama']); ?></strong>! Anda masuk sebagai Petugas/Admin.
             </p>
             
-            <p>Ini adalah pusat kendali utama. Dari sini Anda memiliki hak akses penuh untuk mengelola data buku, data anggota, serta memproses transaksi peminjaman dan pengembalian.</p>
+            <p>Ini adalah pusat kendali utama. Dari sini Anda memiliki hak akses penuh (kecuali fitur hapus dan edit anggota) untuk mengelola data buku, data anggota, serta memproses transaksi peminjaman dan pengembalian.</p>
             
             <h2>Ringkasan</h2>
                 <div class="stats-grid">

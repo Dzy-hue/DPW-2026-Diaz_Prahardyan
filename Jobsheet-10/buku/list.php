@@ -31,6 +31,9 @@ $stmt->execute();
 
 $daftarBuku = $stmt->fetchALL(PDO::FETCH_ASSOC);
 $totalPages = max(1, (int) ceil($totalRows / $perPage));
+
+$is_petugas = isset($_SESSION['role']) && $_SESSION['role'] === 'petugas';
+$is_admin = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
 ?>
             <section>
                 <h2>Daftar Buku</h2>
@@ -62,13 +65,15 @@ $totalPages = max(1, (int) ceil($totalRows / $perPage));
                             <th>Tahun</th>
                             <th>Stok</th>
                             <th>Tanggal</th>
-                            <th>Aksi</th>
+                            <?php if ($is_petugas || $is_admin): ?>
+                                <th>Aksi</th>
+                            <?php endif; ?>
                         </tr>
                     </thead>
                     <tbody>
                         <?php if (empty($daftarBuku)): ?>
                         <tr>
-                            <td colspan="7" style="text-align: center;">Belum ada data buku. Silakan tambah lewat menu "Tambah Buku".</td>
+                            <td colspan="<?php echo ($is_petugas || $is_admin) ? '7' : '6'; ?>" style="text-align: center;">Belum ada data buku. Silakan tambah lewat menu "Tambah Buku".</td>
                         </tr>
                         <?php else: ?>
                             <?php foreach ($daftarBuku as $buku): ?>
@@ -79,14 +84,16 @@ $totalPages = max(1, (int) ceil($totalRows / $perPage));
                                 <td><?php echo $buku['tahun']; ?></td>
                                 <td><?php echo $buku['stok']; ?></td>
                                 <td><?php echo date('d M Y, H:i', strtotime($buku['tanggal_ditambahkan'])); ?></td>
-                                <td>
-                                    <a href="edit.php?id=<?php echo $buku['id']; ?>" class="btn-edit">Edit</a>
+                                <?php if ($is_petugas || $is_admin): ?>
+                                    <td>
+                                        <a href="edit.php?id=<?php echo $buku['id']; ?>" class="btn-edit">Edit</a>
 
-                                    <form class="form-hapus" method="post" action="hapus.php" style="display: inline-block;">
-                                        <input type="hidden" name="id" value="<?php echo $buku['id']; ?>">
-                                        <button type="submit" class="btn-hapus">Hapus</button>
-                                    </form>
-                                </td>
+                                        <form class="form-hapus" method="post" action="hapus.php" style="display: inline-block;">
+                                            <input type="hidden" name="id" value="<?php echo $buku['id']; ?>">
+                                            <button type="submit" class="btn-hapus">Hapus</button>
+                                        </form>
+                                    </td>
+                                <?php endif; ?>
                             </tr>
                             <?php endforeach; ?>
                         <?php endif; ?>

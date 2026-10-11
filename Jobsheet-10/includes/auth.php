@@ -15,10 +15,10 @@ if (!isset($_SESSION['user_id'])) {
 
 // 2. Fungsi tambahan untuk memblokir anggota biasa masuk ke area Petugas
 function wajib_petugas() {
-    if ($_SESSION['role'] !== 'petugas') {
+    if (!isset($_SESSION['role']) || ($_SESSION['role'] !== 'petugas' && $_SESSION['role'] !== 'admin')) {
         $_SESSION['flash'] = [
             'type' => 'error',
-            'pesan' => 'Otorisasi gagal. Halaman ini hanya untuk Petugas Admin.'
+            'pesan' => 'Otorisasi gagal. Halaman ini hanya untuk Petugas dan Admin.'
         ];
         header('Location: /index.php');
         exit;

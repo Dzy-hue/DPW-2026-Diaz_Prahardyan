@@ -30,7 +30,7 @@ $base = $__rel === '' ? '' : str_repeat('../', substr_count($__rel, '/') + 1);
         <nav>
             <ul>
                 <!-- Percabangan Khusus Role Petugas -->
-                <?php if ($sudahLogin && $role === 'petugas'): ?>
+                <?php if ($sudahLogin && ($role === 'petugas' || $role === 'admin')): ?>
                     <li><a href="<?php echo $base; ?>dashboard_petugas.php">Beranda</a></li>
                     <li><a href="<?php echo $base; ?>buku/list.php">Daftar Buku</a></li>
                     <li><a href="<?php echo $base; ?>anggota/list.php">Daftar Anggota</a></li>

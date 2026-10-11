@@ -3,6 +3,16 @@ session_start();
 
 require_once __DIR__ . '/../includes/auth.php';
 wajib_petugas();
+
+if ($_SESSION['role'] !== 'admin') {
+    $_SESSION['flash'] = [
+        'type' => 'error',
+        'pesan' => 'Akses ditolak. Hanya Admin yang berhak menghapus data anggota.'
+    ];
+    header('Location: list.php');
+    exit;
+}
+
 require __DIR__ . '/../includes/koneksi.php';
 
 // Sengaja hanya menerima post (bukan get) agar penghapusan tidak bisa

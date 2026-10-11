@@ -33,7 +33,7 @@ try {
         $_SESSION['role']    = $user['role']; 
         
         // 4. Percabangan otomatis berdasarkan peran (Sesuai Wireframe)
-        if ($user['role'] === 'petugas') {
+        if ($user['role'] === 'petugas' || $user['role'] === 'admin') {
             // Petugas diarahkan ke Dasbor Admin 
             header('Location: ../dashboard_petugas.php'); 
         } else {
