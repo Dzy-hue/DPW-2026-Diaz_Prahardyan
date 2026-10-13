@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BJ-Mart | Beranda</title>
+        <link rel="stylesheet" href="assets/css/style.css">
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <h1>BerkahJaya-Mart</h1>
+            </div>
+            <button id="nav-toggle-btn" class="nav-toggle-label" type="button">&#9776;</button>
+            <nav id="main-nav">
+                <ul>
+                   <li><a href="index.html">Beranda</a></li>
+                   <li><a href="Kebutuhan/list.html">Daftar Kebutuhan Pokok</a></li>
+                   <li><a href="buku/list.html">Daftar Makanan & Minuman</a></li>
+                   <li><a href="anggota/list.html">Daftar Kebutuhan Lainnya</a></li>
+                   <li><a href="anggota/list.html">Riwayat Penjualan</a></li>
+               </ul> 
+           </nav>
+        </header>
+
+        <main>
+            <section class="hero">
+                <h2>Selamat Datang di BerkahJayaMart</h2>
+                <p>Sistem Pengelolaan Produk & Transaksi Kebutuhan Harian</p>
+            </section>
+
+            <section class="dashboard-metric">
+                <div class="metric card">
+                    <h3>Total Produk</h3>
+                    <p id="Metrik-total-produk">0</p>
+                </div>
+                <div class="metric-card">
+                    <h3>Total Transaksi</h3>
+                    <p id="metrik-total-transaksi">0</p>
+                </div>
+                <div class="metric-card">
+                    <h3>Kategori</h3>
+                    <p>3</p>
+                </div>
+                <div class="metric-card alert">
+                    <h3>Stok Menipis</h3>
+                    <p id="metrik-stok-menipis">0</p>
+                </div>
+            </section>
+
+            <section class="kategori-cepat">
+                <a href="kebutuhan-pokok/tambah.html" class="card-kategori">Tambah Kebutuhan Pokok</a>
+                <a href="makanan-minuman/tambah.html" class="card-kategori">Tambah Makanan & Minuman</a>
+                <a href="kebutuhan-lainnya/tambah.html" class="card-kategori">Tambah Kebutuhan Lainnya</a>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 BJ-Mart &mdash; Project Dzy</p>
+        </footer>
+    </body>
+</html>
