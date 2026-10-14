@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tambah Pembelian Produk | BJ-Mart</title>
+        <link rel="stylesheet" href="../assets/css/style.css">
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <h1>BerkahJaya-Mart</h1>
+            </div>
+            <button id="nav-toggle-btn" class="nav-toggle-label" type="button">&#9776;</button>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="../index.html">Beranda</a></li>
+                    <li><a href="../kebutuhan-pokok/list.html">Daftar Kebutuhan Pokok</a></li>
+                    <li><a href="../makanan-minuman/list.html">Daftra Makanan & Minuman</a></li>
+                    <li><a href="../kebutuhan-lainnya/list.html">Daftar Kebutuhan Lainnya</a></li>
+                    <li><a href="list.html">Riwayat Penjualan</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="header-halaman header-center">
+                <h2>Tambah Pembelian Produk</h2>
+            </div>
+
+            <form id="form-kasir" action="#" method="POST" class="form-standar">
+                <div class="form-group">
+                    <label for="pilih-produk">Pilih Produk <span class="wajib">*</span></label>
+                    <select id="pilih-produk" name="produk">
+                        <option value="">-- Memuat daftar produk... --</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="kategori">Jenis Produk <span class="wajib">*</span></label>
+                    <select id="kategori" name="kategori" required>
+                        <option value="">-- Pilih Jenis Produk --</option>
+                        <option value="Kebutuhan Pokok">Kebutuhan Pokok</option>
+                        <option value="Makanan & Minuman">Makanan & Minuman</option>
+                        <option value="Kebutuhan Lainnya">Kebutuhan Lainnya</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="nama-pembeli">Nama Pembeli (Opsional)</label>
+                    <input type="text" id="nama-pembeli" name="nama-pembeli" placeholder="Boleh dikosongkan">
+                </div>
+
+                <div class="form-group">
+                    <label for="jumlah-beli">Jumlah Beli <span class="wajib">*</span></label>
+                    <input type="number" id="jumlah-beli" name="jumlah-beli" min="1" placeholder="Contoh: 2">
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-simpan">Simpan Pembelian</button>
+                    <a href="list.html" class="btn-kembali">Lihat Riwayat Pembelian</a>
+                </div>
+            </form>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 BJ-Mart &mdash; Project Dzy</p>
+        </footer>
+        <script src="../assets/js/app.js"></script>
+        <script src="../assets/js/transaksi.js"></script>
+    </body>
+</html>
