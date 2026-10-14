@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tambah Kebutuhan Pokok | BJ-Mart</title>
+        <link rel="stylesheet" href="../assets/css/style.css">
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <h1>BerkahJaya-Mart</h1>
+            </div>
+            <button id="nav-toggle-btn" class="nav-toggle-label" type="button">&#9776;</button>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="../index.html">Beranda</a></li>
+                    <li><a href="list.html">Daftar Kebutuhan Pokok</a></li>
+                    <li><a href="../makanan-minuman/list.html">Daftar Makanan & Minuman</a></li>
+                    <li><a href="../kebutuhan-lainnya/list.html">Daftar Kebutuhan Lainnya</a></li>
+                    <li><a href="../transaksi/list.html">Riwayat Penjualan</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="header-halaman header-center">
+                <h2>Tambah Produk Kebutuhan Pokok</h2>
+            </div>
+
+            <form id="form-tambah" action="#" method="POST" class="form-standar">
+                <div class="form-group">
+                    <label for="nama">Nama Produk <span class="wajib">*</span></label>
+                    <input type="text" id="nama" name="nama" placeholder="Contoh: Beras Pandan Wangi">
+                </div>
+
+                <div class="form-group">
+                    <label for="harga">Harga Satuan (Rp) <span class="wajib">*</span></label>
+                    <input type="number" id="harga" name="harga" min="0" placeholder="Contoh: 14000">
+                </div>
+
+                <div class="form-group">
+                    <label for="stok">Stok Awal <span class="wajib">*</span></label>
+                    <input type="number" id="stok" name="stok" min="0" placeholder="Contoh: 50">
+                </div>
+
+                <div class="form-group">
+                    <label for="satuan">Satuan</label>
+                    <select id="satuan" name="satuan">
+                        <option value="">-- Pilih Jenis Satuan --</option>
+                        <option value="Kg">Kg</option>
+                        <option value="Liter">Liter</option>
+                        <option value="Pcs">Pcs</option>
+                        <option value="Bungkus">Bungkus</option>
+                    </select>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-simpan">Simpan Produk</button>
+                    <a href="list.html" class="btn-kembali">Lihat Daftar Produk</a>
+                </div>
+            </form>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 BJ-Mart &mdash; Project Dzy</p>
+        </footer>
+        <script src="../assets/js/app.js"></script>
+    </body>
+</html>
