@@ -1,0 +1,30 @@
+[
+  {
+    "id": "MM-001",
+    "nama": "Indomie Goreng",
+    "harga": 3500,
+    "stok": 120,
+    "satuan": "Bungkus"
+  },
+  {
+    "id": "MM-002",
+    "nama": "Kopi Kapal Api",
+    "harga": 1500,
+    "stok": 200,
+    "satuan": "Saset"
+  },
+  {
+    "id": "MM-003",
+    "nama": "Roti Tawar Sariroti",
+    "harga": 17000,
+    "stok": 10,
+    "satuan": "Bungkus"
+  },
+  {
+    "id": "MM-004",
+    "nama": "Teh Pucuk Harum",
+    "harga": 4000,
+    "stok": 45,
+    "satuan": "Botol"
+  }
+]

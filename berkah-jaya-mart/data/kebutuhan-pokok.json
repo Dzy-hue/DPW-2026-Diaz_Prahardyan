@@ -1,0 +1,30 @@
+[
+  {
+    "id": "KP-001",
+    "nama": "Beras Pandan Wangi",
+    "harga": 15000,
+    "stok": 50,
+    "satuan": "Kg"
+  },
+  {
+    "id": "KP-002",
+    "nama": "Minyak Goreng Bimoli",
+    "harga": 18500,
+    "stok": 30,
+    "satuan": "Liter"
+  },
+  {
+    "id": "KP-003",
+    "nama": "Gula Pasir Putih",
+    "harga": 16000,
+    "stok": 25,
+    "satuan": "Kg"
+  },
+  {
+    "id": "KP-004",
+    "nama": "Telur Ayam Kampung",
+    "harga": 28000,
+    "stok": 15,
+    "satuan": "Kg"
+  }
+]

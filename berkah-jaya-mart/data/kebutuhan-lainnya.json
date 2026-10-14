@@ -1,0 +1,30 @@
+[
+  {
+    "id": "KL-001",
+    "nama": "Sabun Mandi Lifebuoy",
+    "harga": 4500,
+    "stok": 40,
+    "satuan": "Pcs"
+  },
+  {
+    "id": "KL-002",
+    "nama": "Tisu Tessa",
+    "harga": 12000,
+    "stok": 15,
+    "satuan": "Pcs"
+  },
+  {
+    "id": "KL-003",
+    "nama": "Pasta Gigi Pepsodent",
+    "harga": 8500,
+    "stok": 25,
+    "satuan": "Pcs"
+  },
+  {
+    "id": "KL-004",
+    "nama": "Deterjen Rinso",
+    "harga": 21000,
+    "stok": 20,
+    "satuan": "Bungkus"
+  }
+]
