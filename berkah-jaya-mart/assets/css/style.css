@@ -22,7 +22,7 @@
 
 body {
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    background: var(--bg-gradient); /* Background gradasi halus */
+    background: var(--bg-gradient);
     color: var(--text-main);
     line-height: 1.6;
     min-height: 100vh;
@@ -83,7 +83,6 @@ main {
     margin: 0 auto;
 }
 
-/*Hero Section*/
 .hero {
     text-align: center;
     background: var(--bg-card);
@@ -96,7 +95,6 @@ main {
     overflow: hidden;
 }
 
-/*Hiasan background abstrak di hero*/
 .hero::before {
     content: '';
     position: absolute;
@@ -196,7 +194,6 @@ main {
     z-index: 1;
 }
 
-/* Efek garis bawah yang menyapu saat di-hover */
 .card-kategori::before {
     content: "";
     position: absolute;
