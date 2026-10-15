@@ -15,7 +15,7 @@
     "nama_produk": "Indomie Goreng",
     "jumlah": 5,
     "total_bayar": 17500,
-    "status": "Selesai"
+    "status": "Proses Pembayaran"
   },
   {
     "id_nota": "TRX-20261014-01",
