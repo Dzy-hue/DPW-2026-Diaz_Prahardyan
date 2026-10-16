@@ -216,15 +216,16 @@ Logika aplikasi dipecah menjadi tiga berkas JavaScript modular sesuai tanggung j
 
 Seluruh tampilan diatur menggunakan satu berkas stylesheet terpusat (`style.css`) yang dibagi ke dalam 8 bagian terstruktur:
 
-Bagian CSS,Selektor Utama,Penjelasan Singkat & Fungsi
-1. Variabel & Reset,":root, *, body","Menyimpan variabel warna modern (--primary-color, --danger-color), latar gradasi, serta mereset margin, padding, dan memaksakan aturan box-sizing: border-box."
-2. Navbar Global,"header, .logo, nav ul","Menata kepala halaman dengan Flexbox, memberi efek transparansi menu saat di-hover, dan menyembunyikan tombol hamburger pada layar desktop."
-3. Layout & Grid,".dashboard-metrics, .card-kategori","Membatasi lebar konten (1200px), dan menyusun kartu metrik serta kartu pintasan menggunakan CSS Grid (repeat) lengkap dengan efek bayangan."
-4. Tabel & Pencarian,".search-box, .table-responsive, td","Menata cincin fokus biru pada kotak pencarian, membungkus tabel agar dapat digeser horizontal (overflow-x: auto), dan memberi efek sorot saat baris disentuh."
-5. Formulir & Input,".form-standar, input, select","Mengatur kontainer form maksimal 600px, menata desain input agar bersih, dan mewarnai tanda bintang wajib isi (.wajib) dengan warna merah."
-6. Tombol Aksi,".btn-tambah, .btn-simpan","Menyeragamkan tampilan tombol dengan sudut membulat, bayangan halus, dan animasi melayang (transform: translateY(-2px)) saat kursor mendekat."
-7. Media Queries,@media (max-width: 900px),"Mode Responsif: Mengubah menu navigasi horizontal menjadi dropdown vertikal, memunculkan hamburger, dan menyesuaikan grid metrik untuk layar HP."
-8. Footer,footer,Menempatkan hak cipta secara terpusat di dasar halaman dengan warna teks sekunder yang tidak mencolok.
+| Bagian CSS | Selektor Utama | Penjelasan Singkat & Fungsi |
+| :--- | :--- | :--- |
+| **1. Variabel & Reset** | `:root`, `*`, `body` | Menyimpan variabel warna modern (`--primary-color`, `--danger-color`), latar gradasi, serta mereset margin, padding, dan memaksakan aturan `box-sizing: border-box`. |
+| **2. Navbar Global** | `header`, `.logo`, `nav ul` | Menata kepala halaman dengan Flexbox, memberi efek transparansi menu saat di-hover, dan menyembunyikan tombol hamburger pada layar desktop. |
+| **3. Layout & Grid** | `.dashboard-metrics`, `.card-kategori` | Membatasi lebar konten maksimal 1200px, menyusun kartu metrik dan kartu pintasan menggunakan CSS Grid beserta efek bayangan melayang. |
+| **4. Tabel & Pencarian** | `.search-box`, `.table-responsive`, `td` | Menata cincin fokus biru pada kotak pencarian, membungkus tabel agar aman digeser horizontal (`overflow-x: auto`), dan memberi efek sorot saat baris disentuh. |
+| **5. Formulir & Input** | `.form-standar`, `input`, `select` | Mengatur kontainer form maksimal 600px, menata desain input agar bersih, dan mewarnai tanda bintang kolom wajib isi (`.wajib`) dengan warna merah. |
+| **6. Tombol Aksi** | `.btn-tambah`, `.btn-simpan` | Menyeragamkan tampilan tombol dengan sudut membulat, bayangan halus, dan animasi melayang (`transform: translateY(-2px)`) saat kursor mendekat. |
+| **7. Media Queries** | `@media (max-width: 900px)` | Mode Responsif: Mengubah menu navigasi horizontal menjadi dropdown vertikal, memunculkan hamburger, dan menyesuaikan grid metrik untuk layar smartphone. |
+| **8. Footer** | `footer` | Menempatkan hak cipta secara terpusat di dasar halaman dengan warna teks sekunder yang tidak mencolok. |
 
 ---
 
@@ -268,12 +269,13 @@ Jika Anda ingin menghapus semua hasil uji coba (tambahan produk/transaksi) dan m
 
 ## 🧪 Skenario Pengujian (Testing)
 
-Skenario Uji,Langkah Pengujian,Hasil yang Diharapkan
-Validasi Form Kosong,"Buka halaman Tambah Produk, biarkan form kosong, lalu klik Simpan Produk.",Muncul alert peringatan dan kolom wajib berubah menjadi bergaris tepi merah; warna merah hilang otomatis saat diketik.
-Tambah & Persistensi,"Isi form Tambah Produk dengan lengkap lalu simpan, buka halaman Daftar Produk, dan tekan refresh.",Produk baru muncul di tabel dengan ID PRD-XXX dan tetap ada meskipun halaman dimuat ulang.
-Edit & Hapus Produk,Klik tombol Edit atau Hapus pada salah satu baris produk.,Dialog prompt() memperbarui data tabel dan memori lokal seketika; tombol Hapus menghilangkan baris secara permanen.
-Live Search & Counter,Ketik kata kunci pada kotak pencarian di halaman Daftar Produk atau Riwayat Penjualan.,"Tabel menyaring baris secara instan dan teks ""Menampilkan X dari Y produk/transaksi"" otomatis menyesuaikan."
-Proteksi Stok Kasir,"Buka form Tambah Pembelian, pilih produk, lalu isi Jumlah Beli melebihi angka sisa stok.","Sistem menolak proses penyimpanan dan memunculkan notifikasi ""STOK TIDAK MENCUKUPI!""."
-Sinkronisasi Potong Stok,"Buat pesanan (status Proses Pembayaran), buka Riwayat Penjualan, klik tombol Selesai.","Status berubah hijau (""Selesai""), tombol aksi hilang, dan sisa stok produk tersebut di halaman inventaris langsung berkurang otomatis."
-Pembatalan Transaksi,"Klik tombol Batal pada transaksi yang masih berstatus ""Proses Pembayaran"".",Transaksi berhasil dihapus sepenuhnya dari layar dan memori lokal tanpa mempengaruhi jumlah stok asli.
-Metrik Dashboard,"Tambah produk/transaksi baru, kembali ke Beranda, lalu kecilkan layar browser menjadi versi mobile.","Angka keempat kartu metrik ikut berubah, dan navigasi berubah bentuk menjadi tombol Hamburger Menu."
+| Skenario Uji | Langkah Pengujian | Hasil yang Diharapkan |
+| :--- | :--- | :--- |
+| **Validasi Form Kosong** | Buka halaman Tambah Produk, biarkan form kosong, lalu klik **Simpan Produk**. | Muncul alert peringatan dan kolom wajib berubah menjadi bergaris tepi merah; warna merah hilang otomatis saat diketik. |
+| **Tambah & Persistensi** | Isi form Tambah Produk dengan lengkap lalu simpan, buka halaman Daftar Produk, dan tekan refresh. | Produk baru muncul di tabel dengan ID PRD-XXX dan tetap ada meskipun halaman dimuat ulang. |
+| **Edit & Hapus Produk** | Klik tombol **Edit** atau **Hapus** pada salah satu baris produk. | Dialog prompt memperbarui data tabel dan memori lokal seketika; tombol Hapus menghilangkan baris secara permanen setelah dikonfirmasi. |
+| **Live Search & Counter** | Ketik kata kunci pada kotak pencarian di halaman Daftar Produk atau Riwayat Penjualan. | Tabel menyaring baris secara instan dan teks penghitung "Menampilkan X dari Y produk/transaksi" otomatis menyesuaikan. |
+| **Proteksi Stok Kasir** | Buka form Tambah Pembelian, pilih produk, lalu isi Jumlah Beli melebihi angka sisa stok. | Sistem menolak proses penyimpanan dan memunculkan notifikasi peringatan "STOK TIDAK MENCUKUPI!". |
+| **Sinkronisasi Potong Stok** | Buat pesanan dengan status Proses Pembayaran, buka Riwayat Penjualan, klik tombol hijau **Selesai**. | Status berubah hijau (Selesai), tombol aksi hilang, dan sisa stok produk tersebut di halaman inventaris langsung berkurang otomatis. |
+| **Pembatalan Transaksi** | Klik tombol **Batal** pada transaksi yang masih berstatus Proses Pembayaran. | Transaksi berhasil dihapus sepenuhnya dari layar dan memori lokal tanpa mempengaruhi jumlah stok asli. |
+| **Metrik Dashboard** | Tambah produk/transaksi baru, kembali ke Beranda, lalu kecilkan layar browser menjadi versi mobile. | Angka keempat kartu metrik ikut berubah, dan navigasi berubah bentuk menjadi tombol Hamburger Menu. |
