@@ -216,32 +216,15 @@ Logika aplikasi dipecah menjadi tiga berkas JavaScript modular sesuai tanggung j
 
 Seluruh tampilan diatur menggunakan satu berkas stylesheet terpusat (`style.css`) yang dibagi ke dalam 8 bagian terstruktur:
 
-| Bagian CSS | Selektor / Kelas Utama | Penjelasan Singkat & Fungsi |
-| --- | --- | --- |
-| **1. Variabel & Reset Dasar** | `:root`, `*`, `body` | Mendefinisikan variabel warna modern (`--primary-color: #0ea5e9`, `--primary-dark: #0369a1`, `--secondary-color: #10b981`, `--danger-color: #ef4444`), latar gradasi (`--bg-gradient`), serta mereset *margin*, *padding*, dan `box-sizing: border-box`.
-
- |
-| **2. Navbar Global** | `header`, `.logo`, `nav ul`, `nav a`, `.nav-toggle-label` | Menata *header* dengan Flexbox (`justify-content: space-between`) berlatar gradasi biru, memberi efek *hover* transparan pada menu, dan menyembunyikan tombol *hamburger* di layar besar.
-
- |
-| **3. Layout Beranda & Grid** | `main`, `.hero`, `.dashboard-metrics`, `.metric-card`, `.kategori-cepat`, `.card-kategori` | Membatasi lebar konten (`max-width: 1200px`), memberi lingkaran cahaya blur (`::before`) pada `.hero`, menyusun 4 kartu metrik dengan CSS Grid (`repeat(4, 1fr)`), dan menata kartu pintasan kategori (`repeat(2, 1fr)`) dengan animasi garis bawah hijau saat di-*hover*.
-
- |
-| **4. Tabel & Pencarian** | `.header-halaman`, `.search-box`, `.table-responsive`, `table`, `th`, `td` | Mengatur kotak pencarian dengan cincin fokus biru, membungkus tabel dengan `overflow-x: auto` agar aman digulir di layar sempit, dan memberi efek sorot baris (`#f1f5f9`) saat di-*hover*.
-
- |
-| **5. Formulir & Input** | `.form-standar`, `.form-group`, `input`, `select`, `.wajib`, `.error` | Menata kontainer form terpusat (`max-width: 600px`) dengan sudut membulat (`16px`), menyeragamkan gaya input/dropdown, dan menandai kolom wajib dengan tanda bintang merah (`.wajib`).
-
- |
-| **6. Tombol (Buttons)** | `.btn-tambah`, `.btn-simpan`, `.btn-kembali`, `.btn-hapus` | Mengatur desain tombol aksi dengan sudut membulat, bayangan lembut, dan animasi terangkat (`transform: translateY(-2px)`) ketika disentuh kursor.
-
- |
-| **7. Media Queries Responsif** | `@media (max-width: 900px)`, `@media (max-width: 600px)` | Pada `≤ 900px`: memunculkan tombol *hamburger*, mengubah menu menjadi *dropdown* vertikal (`.nav-open`), dan mengubah metrik menjadi 2 kolom. Pada `≤ 600px`: menyusun metrik menjadi 1 kolom penuh dan menyesuaikan ukuran tombol serta teks untuk layar *smartphone*.
-
- |
-| **8. Footer** | `footer` | Menempatkan teks hak cipta secara terpusat di bagian paling bawah halaman dengan warna teks sekunder (`--text-muted`).
-
- |
+Bagian CSS,Selektor Utama,Penjelasan Singkat & Fungsi
+1. Variabel & Reset,":root, *, body","Menyimpan variabel warna modern (--primary-color, --danger-color), latar gradasi, serta mereset margin, padding, dan memaksakan aturan box-sizing: border-box."
+2. Navbar Global,"header, .logo, nav ul","Menata kepala halaman dengan Flexbox, memberi efek transparansi menu saat di-hover, dan menyembunyikan tombol hamburger pada layar desktop."
+3. Layout & Grid,".dashboard-metrics, .card-kategori","Membatasi lebar konten (1200px), dan menyusun kartu metrik serta kartu pintasan menggunakan CSS Grid (repeat) lengkap dengan efek bayangan."
+4. Tabel & Pencarian,".search-box, .table-responsive, td","Menata cincin fokus biru pada kotak pencarian, membungkus tabel agar dapat digeser horizontal (overflow-x: auto), dan memberi efek sorot saat baris disentuh."
+5. Formulir & Input,".form-standar, input, select","Mengatur kontainer form maksimal 600px, menata desain input agar bersih, dan mewarnai tanda bintang wajib isi (.wajib) dengan warna merah."
+6. Tombol Aksi,".btn-tambah, .btn-simpan","Menyeragamkan tampilan tombol dengan sudut membulat, bayangan halus, dan animasi melayang (transform: translateY(-2px)) saat kursor mendekat."
+7. Media Queries,@media (max-width: 900px),"Mode Responsif: Mengubah menu navigasi horizontal menjadi dropdown vertikal, memunculkan hamburger, dan menyesuaikan grid metrik untuk layar HP."
+8. Footer,footer,Menempatkan hak cipta secara terpusat di dasar halaman dengan warna teks sekunder yang tidak mencolok.
 
 ---
 
@@ -285,45 +268,12 @@ Jika Anda ingin menghapus semua hasil uji coba (tambahan produk/transaksi) dan m
 
 ## 🧪 Skenario Pengujian (Testing)
 
-| Skenario Uji | Langkah Pengujian | Hasil yang Diharapkan |
-| --- | --- | --- |
-| **Validasi Form Kosong** | Buka halaman Tambah Produk, biarkan form kosong, lalu klik **Simpan Produk**.
-
- | Muncul *alert* peringatan dan kolom wajib (`nama`, `harga`, `stok`) berubah menjadi bergaris tepi merah; warna merah otomatis hilang saat mulai diketik.
-
- |
-| **Tambah & Persistensi Produk** | Isi form Tambah Produk dengan lengkap lalu simpan, kemudian buka halaman Daftar Produk dan *refresh* halaman.
-
- | Produk baru muncul di tabel dengan ID `PRD-XXX`, dan tetap ada meskipun halaman dimuat ulang.
-
- |
-| **Edit & Hapus Produk** | Klik tombol **Edit** (oranye) atau **Hapus** (merah) pada salah satu baris produk.
-
- | Dialog `prompt()` memperbarui data produk di tabel dan memori lokal; tombol Hapus menghilangkan baris setelah konfirmasi.
-
- |
-| **Live Search & Counter** | Ketik kata kunci pada kotak pencarian di halaman Daftar Produk atau Riwayat Penjualan.
-
- | Tabel menyaring baris secara instan dan teks indikator *"Menampilkan X dari Y produk/transaksi"* ikut berubah sesuai hasil filter.
-
- |
-| **Proteksi Stok Kasir** | Buka form Tambah Pembelian, pilih produk, dan masukkan Jumlah Beli melebihi sisa stok yang tertera di *dropdown*.
-
- | Sistem menolak penyimpanan dan memunculkan peringatan *"STOK TIDAK MENCUKUPI!"* beserta informasi sisa stok yang tersedia.
-
- |
-| **Sinkronisasi Potong Stok** | Buat transaksi baru (status awal *"Proses Pembayaran"*), buka Riwayat Penjualan, lalu klik tombol hijau **Selesai**.
-
- | Status berubah menjadi *"Selesai"* (hijau), tombol aksi hilang diganti `-`, dan sisa stok produk terkait di halaman inventaris otomatis berkurang.
-
- |
-| **Pembatalan Transaksi** | Klik tombol **Batal** pada transaksi yang masih berstatus *"Proses Pembayaran"*.
-
- | Pesanan berhasil dibatalkan dan dihapus dari tabel riwayat serta `localStorage` tanpa memotong stok produk.
-
- |
-| **Metrik Dashboard & Responsif** | Buka Beranda setelah menambah transaksi/mengurangi stok, lalu kecilkan ukuran layar *browser* hingga `< 900px`.
-
- | Angka pada 4 kartu metrik beranda ikut terbarui otomatis, dan menu navigasi berubah menjadi tombol *Hamburger* yang berfungsi saat diklik.
-
- |
+Skenario Uji,Langkah Pengujian,Hasil yang Diharapkan
+Validasi Form Kosong,"Buka halaman Tambah Produk, biarkan form kosong, lalu klik Simpan Produk.",Muncul alert peringatan dan kolom wajib berubah menjadi bergaris tepi merah; warna merah hilang otomatis saat diketik.
+Tambah & Persistensi,"Isi form Tambah Produk dengan lengkap lalu simpan, buka halaman Daftar Produk, dan tekan refresh.",Produk baru muncul di tabel dengan ID PRD-XXX dan tetap ada meskipun halaman dimuat ulang.
+Edit & Hapus Produk,Klik tombol Edit atau Hapus pada salah satu baris produk.,Dialog prompt() memperbarui data tabel dan memori lokal seketika; tombol Hapus menghilangkan baris secara permanen.
+Live Search & Counter,Ketik kata kunci pada kotak pencarian di halaman Daftar Produk atau Riwayat Penjualan.,"Tabel menyaring baris secara instan dan teks ""Menampilkan X dari Y produk/transaksi"" otomatis menyesuaikan."
+Proteksi Stok Kasir,"Buka form Tambah Pembelian, pilih produk, lalu isi Jumlah Beli melebihi angka sisa stok.","Sistem menolak proses penyimpanan dan memunculkan notifikasi ""STOK TIDAK MENCUKUPI!""."
+Sinkronisasi Potong Stok,"Buat pesanan (status Proses Pembayaran), buka Riwayat Penjualan, klik tombol Selesai.","Status berubah hijau (""Selesai""), tombol aksi hilang, dan sisa stok produk tersebut di halaman inventaris langsung berkurang otomatis."
+Pembatalan Transaksi,"Klik tombol Batal pada transaksi yang masih berstatus ""Proses Pembayaran"".",Transaksi berhasil dihapus sepenuhnya dari layar dan memori lokal tanpa mempengaruhi jumlah stok asli.
+Metrik Dashboard,"Tambah produk/transaksi baru, kembali ke Beranda, lalu kecilkan layar browser menjadi versi mobile.","Angka keempat kartu metrik ikut berubah, dan navigasi berubah bentuk menjadi tombol Hamburger Menu."
