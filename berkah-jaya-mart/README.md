@@ -27,16 +27,11 @@ Halaman beranda secara otomatis menghitung dan merangkum data dari seluruh memor
 
 * **Total Produk:** Menghitung keseluruhan produk dari seluruh kategori.
 
-
 * **Total Transaksi:** Menghitung jumlah keseluruhan riwayat penjualan.
-
 
 * **Kategori:** Menampilkan jumlah kategori inventaris yang tersedia (3 kategori).
 
-
 * **Stok Menipis:** Memberikan peringatan angka otomatis untuk produk yang sisa stoknya kurang dari atau sama dengan 5.
-
-
 
 ### 📦 2. Manajemen Inventaris (CRUD & Kategori)
 
@@ -44,16 +39,11 @@ Produk dikelompokkan dalam tiga kategori utama yaitu Kebutuhan Pokok, Makanan & 
 
 * **Tambah Produk:** Dilengkapi validasi formulir cerdas berupa garis tepi merah untuk *input* kosong yang otomatis hilang saat pengguna mulai mengetik.
 
-
 * **Edit & Hapus:** Modifikasi data produk (*nama, harga, stok*) dan penghapusan baris yang perubahannya langsung tersimpan ke memori lokal.
-
 
 * **Live Search & Indikator:** Pencarian produk instan saat mengetik yang dilengkapi teks penghitung dinamis *"Menampilkan X dari Y produk"*.
 
-
 * **Loading State:** Efek animasi transisi pemuatan (*artificial delay*) selama 0,8 detik (800ms) untuk memberikan kesan visual aplikasi yang profesional.
-
-
 
 ### 💳 3. Layanan Kasir & Pemotongan Stok Cerdas (Smart POS)
 
@@ -61,31 +51,21 @@ Sistem *Point of Sale* sederhana yang terhubung langsung dengan data inventaris:
 
 * *Dropdown* pilihan produk otomatis menampilkan sisa stok dan satuan terbaru dari seluruh kategori.
 
-
 * Sistem proteksi yang menolak transaksi apabila "Jumlah Beli" melebihi ketersediaan stok.
 
-
 * **Pemotongan Stok Otomatis:** Saat transaksi dikonfirmasi selesai, sistem secara otomatis melacak produk terkait di dalam memori dan mengurangi angka stoknya.
-
-
 
 ### 📜 4. Manajemen Riwayat Transaksi (State Management)
 
 * **Status "Proses Pembayaran" (Oranye/Kuning):** Status bawaan transaksi baru yang masih bisa dibatalkan atau dikonfirmasi selesai.
 
-
 * **Status "Selesai" (Hijau):** Transaksi yang telah dikonfirmasi dan stoknya telah dipotong secara permanen, di mana tombol aksi otomatis disembunyikan (diganti tanda `-`) untuk mencegah perubahan data.
-
-
 
 ### 🎨 5. Modern UI/UX & Responsif
 
 * Antarmuka modern dengan gradasi warna (*bg-gradient*), efek *hover*, dan *card shadow* yang elegan.
 
-
 * Responsif 100% untuk layar Desktop, Tablet, dan *Mobile* yang dilengkapi tombol menu navigasi *Hamburger*.
-
-
 
 ---
 
@@ -104,6 +84,11 @@ berkah-jaya-mart/
 │       ├── produk.js              # Logika CRUD, Tabel, Live Search, dan Validasi Produk
 │       └── transaksi.js           # Logika Kasir, Riwayat Penjualan, & Update Stok
 │
+├── img/                           # Aset gambar dan logo
+│   ├── foto-pribadi.jpg
+│   ├── logo-jti-polinema.png
+│   └── logo-toko.jpg
+|
 ├── data/                          # File JSON statis (di-load saat LocalStorage kosong)
 │   ├── kebutuhan-lainnya.json     # Data awal 4 produk kebutuhan lainnya
 │   ├── kebutuhan-pokok.json       # Data awal 4 produk kebutuhan pokok
@@ -126,6 +111,9 @@ berkah-jaya-mart/
 │   ├── list.html                  # Tabel riwayat penjualan
 │   └── tambah.html                # Form kasir / pembelian produk
 │
+├── UTS/                           # Halaman Data Mahasiswa & UTS
+│   └── uts.html
+|
 ├── index.html                     # Halaman Beranda / Dashboard
 └── README.md                      # Dokumentasi Proyek
 
@@ -154,61 +142,40 @@ Logika aplikasi dipecah menjadi tiga berkas JavaScript modular sesuai tanggung j
 
 * **Toggle Menu Mobile:** Memasang *event listener* klik pada tombol `#nav-toggle-btn` untuk membuka atau menutup menu navigasi melalui penambahan kelas `.nav-open` pada `#main-nav`.
 
-
 * **`fetchAtauLokal(keyPath)`:** Fungsi pembantu asinkron yang mengecek ketersediaan data di `localStorage` terlebih dahulu; apabila kosong, fungsi akan mengambil data dari file JSON (menggunakan penyesuaian *path* `.replace("../", "./")` khusus untuk halaman `index.html`) lalu menyimpannya ke `localStorage`.
 
-
 * **`muatMetrikDashboard()`:** Mengambil seluruh array produk dari 3 kategori serta data transaksi secara asinkron, menggabungkannya dengan *spread operator* (`[...dataPokok, ...dataMakanan, ...dataLainnya]`), menghitung jumlah total produk, total transaksi, total kategori (3), serta menyaring produk dengan `stok <= 5`, lalu menampilkannya ke kartu metrik di beranda.
-
-
 
 ### 2. `assets/js/produk.js` — Manajemen Inventaris (CRUD) & Validasi
 
 * **Penentuan Kunci Memori (`storageKey`):** Mendeteksi kategori halaman secara otomatis melalui atribut `data-json` pada `#tbody-produk` (saat di `list.html`) atau memeriksa URL `window.location.pathname` (saat di `tambah.html`).
 
-
 * **`initValidasiForm(formElem)`:** Memasang *listener* `input` pada semua elemen `input` dan `select` untuk menghapus warna merah saat pengguna mulai mengetik, serta mengembalikan fungsi pengeksekusi `validasiKosong(fieldIds)` yang memberi garis tepi merah (`#ef4444`) dan latar merah muda (`#fee2e2`) pada kolom wajib yang kosong.
-
 
 * **Pemuatan Data & *Loading State*:** Menampilkan `#loading-indicator`, menurunkan opasitas tabel menjadi `0.3`, dan menerapkan `setTimeout` selama `800` milidetik sebelum mengambil data dari `localStorage` atau `fetch()` JSON agar transisi pemuatan terlihat halus.
 
-
 * **`renderTabel(data)`:** Membangun baris `<tr>` secara dinamis, memformat harga menjadi format Rupiah (`toLocaleString('id-ID')`), menyisipkan tombol Edit dan Hapus dengan atribut `data-index`, serta memperbarui teks `#info-tampil` (*"Menampilkan X dari Y produk"*).
-
 
 * **Live Search (`keyup`):** Menyaring daftar produk secara instan berdasarkan kata kunci yang diketik pada `#search-input` menggunakan metode `.filter()` dan `.includes()`, lalu merender ulang tabel.
 
-
 * **Event Delegation (Edit & Hapus):** Memasang satu *listener* klik pada `#tbody-produk`; tombol `.btn-hapus` menghapus produk dengan `.splice(index, 1)` setelah konfirmasi `confirm()`, sedangkan `.btn-edit` membuka dialog `prompt()` untuk memperbarui nama, harga, dan stok langsung ke `localStorage`.
 
-
 * **Simpan Produk Baru (`submit`):** Mencegah *reload* halaman (`e.preventDefault()`), memeriksa validasi kolom `['nama', 'harga', 'stok']`, menghasilkan ID unik acak (`PRD-XXX`), menambahkan data ke array dengan `.push()`, dan menyimpannya ke `localStorage`.
-
-
 
 ### 3. `assets/js/transaksi.js` — Kasir (POS), Riwayat & Sinkronisasi Stok
 
 * **`getProdukData(keyPath)` & Dropdown Kasir:** Mengambil data terbaru dari ketiga kategori produk (memprioritaskan `localStorage`), menggabungkannya, dan mengisi elemen `<select id="pilih-produk">` dengan teks nama beserta sisa stok, sembari menyimpan nilai `stok` dan `harga` di dalam atribut `dataset` (`option.dataset.stok` dan `option.dataset.harga`).
 
-
 * **Proses Pembelian (`#form-kasir`):** Memvalidasi apakah produk sudah dipilih dan memastikan `jumlahBeli <= stokTersedia`; jika valid, sistem menghitung `totalBayar`, membuat ID Nota otomatis berbasis tanggal hari ini (`TRX-YYYYMMDD-XX`), membentuk objek transaksi berstatus `"Proses Pembayaran"`, dan memasukkannya ke urutan paling atas riwayat menggunakan `.unshift()`.
-
 
 * **Pemuatan & Render Riwayat (`renderRiwayat`):** Menampilkan efek *loading* 800ms, memperbarui penghitung *"Menampilkan X dari Y transaksi"*, serta membedakan tampilan berdasarkan status: `"Proses Pembayaran"` diberi teks berwarna `orange` beserta tombol **Selesai** dan **Batal**, sedangkan status `"Selesai"` diberi warna `green` dan kolom aksinya diganti tanda strip (`-`).
 
-
 * **Pencarian Riwayat (`keyup`):** Menyaring riwayat transaksi secara *real-time* berdasarkan kecocokan `id_nota` maupun nama `pembeli`.
-
 
 * **Aksi Batal & Konfirmasi Selesai (Potong Stok Otomatis):**
 * **Tombol Batal (`.btn-hapus`):** Menolak pembatalan dengan `alert` jika status sudah `"Selesai"`, dan menghapus transaksi dengan `.splice()` jika masih `"Proses Pembayaran"`.
 
-
 * **Tombol Selesai (`.btn-selesai`):** Mengubah status transaksi menjadi `"Selesai"`, lalu melakukan perulangan (`for...of`) pada ketiga kunci `localStorage` kategori produk untuk mencari nama produk yang cocok (`findIndex`), mengurangi stoknya (`stok -= jumlah`), mencegah stok bernilai negatif, dan menyimpan pembaruan stok serta transaksi kembali ke `localStorage`.
-
-
-
-
 
 ---
 
@@ -237,19 +204,13 @@ Karena aplikasi ini menggunakan fungsi `fetch()` dari JavaScript untuk membaca f
 
 1. Unduh atau *clone* kode sumber proyek ini.
 
-
 2. Buka folder `berkah-jaya-mart` menggunakan editor **Visual Studio Code (VS Code)**.
-
 
 3. Pastikan Anda sudah memasang ekstensi **Live Server** (oleh Ritwick Dey) di VS Code.
 
-
 4. Buka file `index.html`, klik kanan pada editor, dan pilih **"Open with Live Server"**.
 
-
 5. *Browser* akan terbuka otomatis secara lokal (biasanya di `[http://127.0.0.1:5500](http://127.0.0.1:5500)`) dan aplikasi siap digunakan.
-
-
 
 ### 🔄 Cara Mereset Data ke Kondisi Awal:
 
@@ -257,13 +218,9 @@ Jika Anda ingin menghapus semua hasil uji coba (tambahan produk/transaksi) dan m
 
 1. Buka *Developer Tools* di *browser* (Tekan `F12` atau `Ctrl + Shift + I`).
 
-
 2. Masuk ke tab **Application** (Chrome/Edge) atau **Storage** (Firefox), buka bagian **Local Storage**, klik kanan pada URL lokal Anda, lalu pilih **Clear** (atau ketik `localStorage.clear()` pada tab **Console**).
 
-
 3. Lakukan *Hard Refresh* pada halaman web (`Ctrl + F5`), maka data akan dimuat ulang dari berkas JSON di folder `data/`.
-
-
 
 ---
 
