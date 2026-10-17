@@ -26,6 +26,8 @@ body {
     color: var(--text-main);
     line-height: 1.6;
     min-height: 100vh;
+    display: flex; 
+    flex-direction: column;
 }
 
 /*2. NAVBAR GLOBAL*/
@@ -81,6 +83,38 @@ main {
     padding: 2.5rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
+}
+
+.hero-uts {
+    text-align: left;
+    background: var(--bg-card);
+    padding: 3rem 2rem;
+    border-radius: 16px;
+    margin-bottom: 2.5rem;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(255,255,255,0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-uts::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -10%;
+    width: 200px;
+    height: 200px;
+    background: var(--primary-color);
+    opacity: 0.1;
+    border-radius: 50%;
+    filter: blur(40px);
+}
+
+.hero-uts h2 {
+    color: var(--primary-dark);
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 800;
 }
 
 .hero {
@@ -519,4 +553,143 @@ footer {
     margin-top: auto; 
     color: var(--text-muted);
     font-size: 0.9rem;
+}
+
+/*TAMBAHAN HALAMAN UTS*/
+/* 1. Header & Logo Toko */
+.logo-group {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.logo-brand {
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+    border-radius: 50%; 
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.nav-uts {
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 6px;
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+
+.nav-uts:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* 2. Card Data Mahasiswa (Desain Baru agar Rapi) */
+.mhs-card {
+    background: var(--bg-card);
+    border-radius: 16px;
+    padding: 3rem 4rem;
+    margin-bottom: 2.5rem;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(255,255,255,0.5);
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+}
+
+.mhs-text {
+    text-align: left;
+}
+
+.mhs-text h2 {
+    color: var(--primary-dark);
+    font-size: 1.8rem;
+    margin-bottom: 1.2rem;
+    font-weight: 800;
+}
+
+.mhs-text p {
+    color: var(--text-main);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+/* Fiksasi Ukuran Foto agar tidak penyok/gepeng */
+.mhs-photo {
+    width: 170px;
+    height: 200px; 
+    flex-shrink: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 5px solid white;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.mhs-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%; 
+    border: none;
+    border-radius: 0;
+}
+
+/* 3. Footer Biru Full & Logo Polinema */
+.footer-blue {
+    background: linear-gradient(90deg, var(--primary-dark) 0%, var(--primary-color) 100%) !important;
+    width: 100%;
+    padding: 1.5rem 2rem;
+    margin-top: auto; 
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-blue p {
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0;
+    font-weight: 500;
+}
+
+.logo-jti-polinema {
+    height: 55px; 
+    width: auto;
+    object-fit: contain;
+    background-color: white; 
+    padding: 5px 15px;
+    border-radius: 8px;
+}
+
+/* 4. Responsif untuk HP */
+@media screen and (max-width: 650px) {
+    .mhs-card {
+        flex-direction: column-reverse; 
+        text-align: center;
+        gap: 2rem;
+        padding: 2.5rem 1.5rem;
+    }
+    
+    .mhs-text {
+        text-align: center;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
 }
